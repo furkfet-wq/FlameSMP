@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flame SMP | Welcome</title>
+<meta name="description" content="Flame SMP: join at flamesmp.dat.gg. Store, Discord and how to join.">
+<meta name="theme-color" content="#141414">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Tiny5&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.home{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:88px 20px 0}
+.bento{width:min(1100px,100%);display:grid;gap:24px}
+.row1{display:grid;grid-template-columns:293fr 534fr 218fr;gap:24px;height:300px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:24px;height:300px}
+
+.tile{position:relative;display:block;border-radius:22px;overflow:hidden;background:var(--card);isolation:isolate;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.tile:hover{transform:translateY(-4px);box-shadow:0 22px 44px -14px rgba(0,0,0,.7)}
+.tile .bgimg{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform 1s var(--ease),filter .5s}
+.tile:hover .bgimg{transform:scale(1.06)}
+.tile::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.42) 0%,transparent 38%)}
+.tile h2{position:absolute;top:16px;left:18px;font-weight:800;font-size:30px;letter-spacing:-.2px;text-shadow:0 2px 10px rgba(0,0,0,.55)}
+.tile .sub{position:absolute;top:58px;left:19px;font-weight:600;font-size:14px;color:#f1f1f1;text-shadow:0 1px 6px rgba(0,0,0,.7);opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s var(--ease)}
+.tile:hover .sub{opacity:1;transform:none}
+
+/* logo column */
+.logo-col{display:grid;grid-template-rows:1fr 56px;gap:14px;min-width:0}
+.logo-tile{display:grid;place-items:center;background:radial-gradient(120% 120% at 30% 20%,#ffb067,#ff7a1f 55%,#e2501a);}
+.logo-tile::after{display:none}
+.logo-tile img{width:62%;max-width:180px;aspect-ratio:1;border-radius:26px;box-shadow:0 14px 30px rgba(90,20,0,.45);transition:transform .6s var(--ease)}
+.logo-tile:hover img{transform:rotate(-4deg) scale(1.05)}
+.ip-pill{display:flex;align-items:center;justify-content:center;gap:14px;border-radius:28px;background:var(--card);font-weight:800;font-size:19px;transition:background .2s,transform .2s}
+.ip-pill:hover{background:#262626}
+.ip-pill:active{transform:scale(.98)}
+.ip-pill svg{width:26px;height:26px}
+
+/* store */
+.t-store .bgimg{background-image:url(img/banner.jpg)}
+
+/* discord */
+.t-discord{display:grid;place-items:center;text-align:center;background:linear-gradient(165deg,#1d2036,#16182a);border:1px solid #262a45}
+.t-discord::after{display:none}
+.t-discord .in{display:grid;justify-items:center}
+.t-discord svg{width:62px;height:62px;color:#5865f2;margin-bottom:8px;transition:transform .5s var(--ease)}
+.t-discord:hover svg{transform:scale(1.1) rotate(-6deg)}
+.t-discord b{font-weight:800;font-size:34px;line-height:1.15}
+.t-discord span{display:flex;align-items:center;gap:7px;font-weight:600;font-size:16px;color:#e6e6e6}
+.t-discord span i{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.t-discord .sub{position:static;opacity:0;margin-top:8px;color:#aab0ff;text-shadow:none}
+
+/* support: designed tile with floating topic icons */
+.t-support{background:radial-gradient(120% 120% at 85% 100%,#6a1a12 0%,#2a1210 45%,#191312 75%)}
+.t-support::after{display:none}
+.t-support .sup-grid{position:absolute;right:-6px;bottom:-12px;display:grid;grid-template-columns:repeat(3,84px);gap:16px;transform:rotate(-10deg);transition:transform .8s var(--ease)}
+.t-support:hover .sup-grid{transform:rotate(-6deg) scale(1.04)}
+.sup-grid span{width:84px;height:84px;border-radius:20px;display:grid;place-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);backdrop-filter:blur(2px);animation:float 7s ease-in-out infinite;animation-delay:var(--fd,0s)}
+.sup-grid svg{width:36px;height:36px}
+.t-support .help{position:absolute;left:18px;bottom:18px;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:#5865f2;font-weight:800;font-size:14px;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.2);transition:filter .2s}
+.t-support:hover .help{filter:brightness(1.1)}
+.t-support .help svg{width:18px;height:18px}
+.t-support p{position:absolute;top:58px;left:19px;max-width:46%;font-weight:600;font-size:14px;color:#d8c9c4;line-height:1.45}
+
+/* how to join (minecraft-style fields) */
+.t-join .bgimg{background-image:url(img/castle-right.jpg);filter:blur(3px) brightness(.55);transform:scale(1.08)}
+.t-join:hover .bgimg{transform:scale(1.12)}
+.mc{position:absolute;left:24%;right:0;top:66px;display:grid;gap:4px;font-family:Tiny5,monospace}
+.mc label{color:#a7a7a7;font-size:22px;text-shadow:2px 2px 0 #2a2a2a}
+.mc button{display:block;width:100%;text-align:left;padding:8px 10px;background:#000;border:2px solid #a0a0a0;border-right:0;color:#fff;font-family:Tiny5,monospace;font-size:22px;margin-bottom:14px;transition:border-color .2s}
+.mc button:hover{border-color:#fff}
+.mc .cur{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.t-join{cursor:pointer}
+.watch{position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;background:#ff0033;color:#fff;font-weight:800;font-size:13px;
+  box-shadow:0 6px 18px rgba(255,0,51,.4);transition:transform .3s var(--ease),filter .2s}
+.watch svg{width:15px;height:15px}
+.t-join:hover .watch{transform:scale(1.07);filter:brightness(1.1)}
+.online{position:absolute;left:18px;bottom:16px;display:flex;align-items:center;gap:8px;font-weight:700;font-size:13px;padding:6px 11px;border-radius:999px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px)}
+.online i{width:7px;height:7px;border-radius:50%;background:#6b6b6b}
+.online.on i{background:#4ade80;box-shadow:0 0 8px #4ade80}
+
+@media (max-width:960px){
+  .home{padding-top:40px}
+  .row1{grid-template-columns:1fr 1fr;height:auto}
+  .row1 .t-store{grid-column:1/-1;grid-row:2;height:260px}
+  .logo-col{height:300px}
+  .t-discord{height:300px}
+  .row2{grid-template-columns:1fr;height:auto}
+  .row2 .tile{height:280px}
+}
+@media (max-width:560px){
+  .row1{grid-template-columns:1fr}
+  .row1 .t-store{grid-row:auto}
+  .t-discord{height:220px}
+  .tile h2{font-size:26px}
+  .mc{left:18px;top:62px}
+  .mc label,.mc button{font-size:19px}
+  .t-support .sup-grid{grid-template-columns:repeat(3,62px);gap:12px}
+  .sup-grid span{width:62px;height:62px;border-radius:16px}
+  .sup-grid svg{width:28px;height:28px}
+}
+</style>
+</head>
+<body>
+<div class="pattern" aria-hidden="true"></div>
+<div class="glow" aria-hidden="true"></div>
+<div class="home-tools" data-tools="lang"></div>
+
+<main class="home">
+  <div class="bento">
+    <div class="row1">
+      <div class="logo-col rise" style="--d:0ms">
+        <a class="tile logo-tile" href="store.html" aria-label="Flame SMP store"><img src="img/logo.png" alt="Flame SMP logo"></a>
+        <button class="ip-pill" data-copy="flamesmp.dat.gg" aria-label="Copy server address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>
+          flamesmp.dat.gg
+        </button>
+      </div>
+      <a class="tile t-store rise" style="--d:90ms" href="store.html">
+        <div class="bgimg"></div>
+        <h2 data-i18n="store">Store</h2><span class="sub" data-i18n="browse">Browse the store</span>
+      </a>
+      <a class="tile t-discord rise" style="--d:180ms" data-link="discord" target="_blank" rel="noopener">
+        <div class="in">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.2A17.6 17.6 0 0 0 15.2 3.8l-.6 1.2a16 16 0 0 0-5.2 0l-.6-1.2a17.6 17.6 0 0 0-4.4 1.4C1.6 9.4.8 13.5 1.2 17.5a17.8 17.8 0 0 0 5.4 2.7l1.1-1.8a11.4 11.4 0 0 1-1.8-.9l.4-.3a12.6 12.6 0 0 0 11.4 0l.4.3a11.4 11.4 0 0 1-1.8.9l1.1 1.8a17.8 17.8 0 0 0 5.4-2.7c.5-4.7-.8-8.7-3.2-12.3zM8.5 15.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2zm7 0c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2z"/></svg>
+          <b id="dcCount">Discord</b>
+          <span><i></i><em id="dcLabel" style="font-style:normal" data-i18n="community">Join the community</em></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="row2">
+      <a class="tile t-support rise" style="--d:270ms" href="support.html">
+        <h2 data-i18n="support">Support</h2>
+        <p data-i18n="supDesc">Appeals, reports, bugs and connection help.</p>
+        <div class="sup-grid" aria-hidden="true">
+          <span style="--fd:0s;color:#ef4444"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+          <span style="--fd:-1.2s;color:#cfcfcf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></span>
+          <span style="--fd:-2.4s;color:#fbbf24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></span>
+          <span style="--fd:-3.1s;color:#fbbf24"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4"/><path d="M4 4h13l-2 4 2 4H4"/></svg></span>
+          <span style="--fd:-4.2s;color:#cfcfcf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M12 7v13M3 13h4M17 13h4M4 7l3 2M20 7l-3 2M4 20l3-2M20 20l-3-2M9 4l1.5 2M15 4l-1.5 2"/></svg></span>
+          <span style="--fd:-5.3s;color:#cfcfcf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r="1"/></svg></span>
+        </div>
+        <span class="help"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 5.2A17.6 17.6 0 0 0 15.2 3.8l-.6 1.2a16 16 0 0 0-5.2 0l-.6-1.2a17.6 17.6 0 0 0-4.4 1.4C1.6 9.4.8 13.5 1.2 17.5a17.8 17.8 0 0 0 5.4 2.7l1.1-1.8a11.4 11.4 0 0 1-1.8-.9l.4-.3a12.6 12.6 0 0 0 11.4 0l.4.3a11.4 11.4 0 0 1-1.8.9l1.1 1.8a17.8 17.8 0 0 0 5.4-2.7c.5-4.7-.8-8.7-3.2-12.3zM8.5 15.1c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2zm7 0c-1.1 0-2-1-2-2.2s.9-2.2 2-2.2 2 1 2 2.2-.9 2.2-2 2.2z"/></svg><span data-i18n="getHelp">Get help</span></span>
+      </a>
+      <div class="tile t-join rise" style="--d:360ms" id="joinTile" role="link" tabindex="0" aria-label="Watch how to join Flame SMP on YouTube">
+        <div class="bgimg"></div>
+        <h2 data-i18n="howToJoin">How To Join</h2>
+        <span class="watch"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span data-i18n="watch">Watch video</span></span>
+        <div class="mc">
+          <label for="mcName" data-i18n="srvName">Server Name</label>
+          <button id="mcName" data-copy="Flame SMP">Flame SMP<span class="cur">_</span></button>
+          <label for="mcAddr" data-i18n="srvAddr">Server Address</label>
+          <button id="mcAddr" data-copy="flamesmp.dat.gg">flamesmp.dat.gg</button>
+        </div>
+        <div class="online" id="online"><i></i><span>Checking server…</span></div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer"></footer>
+</main>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
+<script>
+/* How To Join tile opens the YouTube guide (the two boxes still copy the name and address) */
+const openGuide = () => window.open(CONFIG.links.howToJoin, '_blank', 'noopener');
+$('joinTile').addEventListener('click', e => { if (!e.target.closest('[data-copy]')) openGuide(); });
+$('joinTile').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === $('joinTile')){ e.preventDefault(); openGuide(); } });
+
+/* live Discord member count */
+fetch('https://discord.com/api/v9/invites/' + CONFIG.discordInvite + '?with_counts=true')
+  .then(r => r.json())
+  .then(d => {
+    if (!d.approximate_member_count) return;
+    countUp($('dcCount'), d.approximate_member_count);
+    $('dcLabel').removeAttribute('data-i18n');
+    $('dcLabel').textContent = t('members');
+  })
+  .catch(() => {});
+
+/* live player count */
+fetch('https://api.mcsrvstat.us/3/' + CONFIG.serverIp)
+  .then(r => r.json())
+  .then(d => {
+    const el = $('online');
+    if (d.online){
+      const n = (d.players && d.players.online) || 0;
+      el.classList.add('on');
+      el.querySelector('span').textContent = t('online', fmtN(n));
+    } else el.querySelector('span').textContent = t('offline');
+  })
+  .catch(() => { $('online').querySelector('span').textContent = CONFIG.serverIp; });
+
+function countUp(el, to){
+  const t0 = performance.now(), dur = 1600;
+  (function step(t){
+    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
+    el.textContent = fmtN(Math.round(to * e));
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+</script>
+</body>
+</html>
