@@ -47,9 +47,19 @@
 .perks .ic svg{width:18px;height:18px}
 .perks .ic img{width:24px;height:24px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
 .rart{position:relative;align-self:stretch;display:grid;place-items:center}
-.rart svg{width:118px;height:138px;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35));animation:float 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
-.rart .crest{transition:transform .6s var(--ease)}
-.rank:hover .rart .crest{transform:rotate(-6deg) scale(1.07)}
+.rart svg{width:118px;height:138px;overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35)) drop-shadow(0 0 0 transparent);
+  transition:filter .5s;animation:float 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
+.rank:hover .rart svg{filter:drop-shadow(0 12px 14px rgba(0,0,0,.35)) drop-shadow(0 0 14px color-mix(in srgb,var(--cg) 75%,transparent))}
+.rart .crest{transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
+.rank:hover .rart .crest{transform:translateY(-4px) scale(1.06)}
+.rank:hover .rart .emb{animation:flick 1.2s ease-in-out infinite}
+.rank:hover .rart .emb.crown{animation:bob 1.6s ease-in-out infinite}
+.rank:hover .rart .glint{animation:glint 1.1s var(--ease) .12s both}
+.rank:hover .rart .pip{animation:pip .5s ease-out calc(.2s + var(--k) * .13s) both}
+@keyframes flick{0%,100%{transform:scale(1,1)}30%{transform:scale(.96,1.08)}65%{transform:scale(1.03,.96)}}
+@keyframes bob{50%{transform:translateY(-3px) rotate(-3deg)}}
+@keyframes glint{from{transform:translateX(0)}to{transform:translateX(240px)}}
+@keyframes pip{45%{transform:scale(1.7)}}
 
 /* ===== best value: animated ring, shine and a bigger badge ===== */
 .feat{position:relative;margin:44px 0 34px;border-radius:24px;isolation:isolate;transition:transform .4s var(--ease)}
@@ -326,7 +336,7 @@ function crest(r, i){
   const id = 'cr' + i;
   const pips = r.crown ? '' : Array.from({ length: r.tier }, (_, k) => {
     const x = 60 + (k - (r.tier - 1) / 2) * 18;
-    return `<path d="M${x} 104l6 6-6 6-6-6z" fill="url(#${id}f)"/>`;
+    return `<path class="pip" style="--k:${k};transform-box:fill-box;transform-origin:center" d="M${x} 104l6 6-6 6-6-6z" fill="url(#${id}f)"/>`;
   }).join('');
   const emblem = r.crown
     ? `<path d="M30 92 34 48 48 64 60 36 72 64 86 48 90 92Z" fill="url(#${id}f)" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
@@ -336,11 +346,14 @@ function crest(r, i){
        <path d="M60 58c5 5 9 9 9 15a9 9 0 0 1-18 0c0-4 2-7 4-8 0 3 2 5 3 5 0-5 2-8 2-12z" fill="#fff" opacity=".9"/>`;
   return `<svg viewBox="0 0 120 140"><defs>
       <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1a15"/><stop offset="1" stop-color="#110908"/></linearGradient>
-      <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${r.crest[1]}"/><stop offset="1" stop-color="${r.crest[0]}"/></linearGradient></defs>
+      <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${r.crest[1]}"/><stop offset="1" stop-color="${r.crest[0]}"/></linearGradient>
+      <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+      <clipPath id="${id}c"><path d="M60 4 110 22V68c0 36-24 58-50 68C34 126 10 104 10 68V22Z"/></clipPath></defs>
     <g class="crest" style="transform-box:fill-box;transform-origin:center">
       <path d="M60 4 110 22V68c0 36-24 58-50 68C34 126 10 104 10 68V22Z" fill="url(#${id}s)" stroke="url(#${id}f)" stroke-width="5" stroke-linejoin="round"/>
       <path d="M60 15 100 29V68c0 30-20 48-40 57C40 116 20 98 20 68V29Z" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
-      ${emblem}${pips}
+      <g class="emb${r.crown ? ' crown' : ''}" style="transform-box:fill-box;transform-origin:50% 100%">${emblem}</g>${pips}
+      <g clip-path="url(#${id}c)"><g transform="skewX(-20)"><rect class="glint" x="-70" y="-10" width="36" height="160" fill="url(#${id}g)"/></g></g>
     </g></svg>`;
 }
 
@@ -364,7 +377,7 @@ function renderProducts(first){
         <div class="ractions"><button class="rbuy" data-buy="${r.id}">${t(r.monthly ? 'subscribe' : 'buyNow')}</button></div>
       </div>
       <ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>
-      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s">${crest(r, i)}</div>
+      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${crest(r, i)}</div>
     </div>`;
     return r.featured
       ? `<div class="feat rise" style="--d:${120 + i*80}ms"><span class="best-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg>${t('best')}</span>${card}</div>`
