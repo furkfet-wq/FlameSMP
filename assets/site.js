@@ -1,6 +1,12 @@
 /* =========================================================
    FLAME SMP: shared script (both pages)
    ========================================================= */
+/* never run inside another site's frame (stops click-tricking overlays) */
+if (window.top !== window.self){
+  document.documentElement.style.display = 'none';
+  try { window.top.location.replace(window.self.location.href); } catch {}
+}
+
 const CONFIG = {
   serverIp: 'flamesmp.dat.gg',
   serverName: 'Flame SMP',
@@ -19,7 +25,8 @@ const CONFIG = {
 };
 
 const $ = id => document.getElementById(id);
-const NAME_RE = /^[A-Za-z0-9_]{3,16}$/;
+const NAME_RE = /^[A-Za-z0-9_]{2,17}$/;
+const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const ICONS = {
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg>',
   close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
@@ -35,13 +42,13 @@ const ICONS = {
    ========================================================= */
 const LANG = (() => {
   let l; try { l = localStorage.getItem('flame-lang'); } catch {}
-  if (l && STR[l]) return l;
+  if (l && own(STR, l)) return l;
   const nav = navigator.language || 'en';
   if (/^zh/i.test(nav)) return /tw|hk|mo|hant/i.test(nav) ? 'zh-TW' : 'zh';
   const base = nav.split('-')[0].toLowerCase();
   if (base === 'nb' || base === 'nn') return 'no';
   if (base === 'tl') return 'fil';
-  return STR[base] ? base : 'en';
+  return own(STR, base) ? base : 'en';
 })();
 const LOCALE = LANG === 'no' ? 'nb' : LANG;
 function t(key, n){
@@ -64,7 +71,15 @@ const CURRENCIES = ['GBP','USD','EUR','CAD','AUD','NZD','CHF','SEK','NOK','DKK',
 let CUR = 'GBP';
 try { const c = localStorage.getItem('flame-cur'); if (c && CURRENCIES.includes(c)) CUR = c; } catch {}
 let RATES = null;
-const isConverted = () => CUR !== 'GBP' && !!(RATES && RATES[CUR]);
+const goodRate = v => typeof v === 'number' && Number.isFinite(v) && v > 0;
+const isConverted = () => CUR !== 'GBP' && !!RATES && goodRate(RATES[CUR]);
+/* keep only the currencies we list, and only real positive numbers */
+function cleanRates(r){
+  if (!r || typeof r !== 'object') return null;
+  const out = {};
+  CURRENCIES.forEach(c => { if (own(r, c) && goodRate(r[c])) out[c] = r[c]; });
+  return Object.keys(out).length ? out : null;
+}
 function fmtMoney(v, cur){
   const opts = { style:'currency', currency:cur };
   const whole = Math.abs(v - Math.round(v)) < 1e-9;
@@ -76,12 +91,14 @@ function money(gbp){ return isConverted() ? '≈ ' + fmtMoney(gbp * RATES[CUR], 
 async function loadRates(){
   try {
     const c = JSON.parse(localStorage.getItem('flame-rates') || 'null');
-    if (c && Date.now() - c.t < 6 * 3600e3 && c.r){ RATES = c.r; return true; }
+    const r = c && Date.now() - c.t < 6 * 3600e3 ? cleanRates(c.r) : null;
+    if (r){ RATES = r; return true; }
   } catch {}
   try {
     const d = await (await fetch('https://open.er-api.com/v6/latest/GBP')).json();
-    if (d && d.result === 'success' && d.rates){
-      RATES = d.rates;
+    const r = d && d.result === 'success' ? cleanRates(d.rates) : null;
+    if (r){
+      RATES = r;
       try { localStorage.setItem('flame-rates', JSON.stringify({ t: Date.now(), r: RATES })); } catch {}
       return true;
     }
@@ -282,7 +299,7 @@ function buildLegal(){
   o.addEventListener('click', e => { if (e.target === o) closeLegal(); });
 }
 function openLegal(name){
-  if (!LEGAL[name]) return;
+  if (!own(LEGAL, name)) return;
   $('legalTitle').textContent = LANG === 'en' ? LEGAL[name].title : t(name);
   $('legalBody').innerHTML = (LANG === 'en' ? '' : `<p class="en-note">${t('enOnly')}</p>`) + LEGAL[name].body;
   $('legalBody').scrollTop = 0;

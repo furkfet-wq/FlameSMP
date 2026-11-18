@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://mc-heads.net; connect-src 'self' https://open.er-api.com https://discord.com https://api.mcsrvstat.us; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flame SMP Store | Ranks, Shards &amp; Crate Keys</title>
 <meta name="description" content="Official Flame SMP store: buy Minecraft ranks, shards and crate keys for the Flame SMP server. Pay by card or PayPal.">
@@ -220,11 +221,11 @@
   <div>
     <div class="id-kick" data-i18n="welcome">Welcome to Flame SMP</div>
     <h2 class="id-title" id="idTitle"><span class="l1" data-i18n="id1">IDENTIFY</span><span class="l2" data-i18n="id2">YOURSELF</span></h2>
-    <form class="id-form" id="idForm" autocomplete="off">
+    <form class="id-form" id="idForm" autocomplete="off" novalidate>
       <label class="id-label" for="idInput" data-i18n="yourName">Your Minecraft username</label>
-      <div class="id-field" onclick="document.getElementById('idInput').focus()">
+      <div class="id-field" id="idField">
         <img id="idHead" src="https://mc-heads.net/avatar/MHF_Steve/40" alt="">
-        <input id="idInput" data-i18n-ph="typeName" placeholder="Type your username" maxlength="16" spellcheck="false" autocapitalize="off">
+        <input id="idInput" data-i18n-ph="typeName" placeholder="Type your username" minlength="2" maxlength="17" pattern="[A-Za-z0-9_]{2,17}" spellcheck="false" autocapitalize="off">
         <svg class="pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
       </div>
       <button type="submit" class="id-go" data-i18n="cont">Continue</button>
@@ -426,7 +427,12 @@ let pending = null, headTimer;
 const head = (n, s) => `https://mc-heads.net/avatar/${NAME_RE.test(n) ? n : 'MHF_Steve'}/${s}`;
 
 function renderUser(){
-  $('userBtn').innerHTML = player ? `<img src="${head(player, 22)}" alt="">${player}` : `${svg('user', 2.4)} ${t('login')}`;
+  const b = $('userBtn');
+  if (player){
+    const img = document.createElement('img');
+    img.src = head(player, 22); img.alt = '';
+    b.replaceChildren(img, document.createTextNode(player));
+  } else b.innerHTML = `${svg('user', 2.4)} ${t('login')}`;
   $('userBtn').setAttribute('aria-label', player ? t('change') + ': ' + player : t('yourName'));
 }
 function openIdentify(next){
@@ -458,6 +464,7 @@ $('idForm').addEventListener('submit', e => {
   toast(t('hello', v));
   if (pending) setTimeout(() => openCheckout(pending), 300);
 });
+$('idField').addEventListener('click', () => $('idInput').focus());
 $('idClose').onclick = () => closeOverlay($('identify'));
 $('userBtn').onclick = () => openIdentify();
 renderUser();
@@ -488,13 +495,16 @@ function fillCheckout(id){
   $('payPaypal').hidden = !PAY[id].paypal;
 }
 function openCheckout(id){
+  if (!own(PAY, id)) return;
   if (!player) return openIdentify(id);
   current = id;
   fillCheckout(id);
   openOverlay($('checkout'));
 }
 function pay(method){
+  if (!own(PAY, current) || !NAME_RE.test(player)) return;
   let url = PAY[current][method];
+  if (!url) return;
   // Stripe shows this on the payment as the "client reference ID", so you know who to deliver to
   if (method === 'stripe') url += (url.includes('?') ? '&' : '?') + 'client_reference_id=' + encodeURIComponent(player);
   window.open(url, '_blank', 'noopener');
