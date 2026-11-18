@@ -106,6 +106,12 @@
 .mc label{color:#a7a7a7;font-size:22px;text-shadow:2px 2px 0 #2a2a2a}
 .mc button{display:block;width:100%;text-align:left;padding:8px 10px;background:#000;border:2px solid #a0a0a0;border-right:0;color:#fff;font-family:Tiny5,monospace;font-size:22px;margin-bottom:14px;transition:border-color .2s}
 .mc button:hover{border-color:#fff}
+.mc-row{display:flex;gap:10px}
+.mc-f{display:grid;gap:4px;align-content:start;min-width:0;flex:1 1 auto}
+.mc-port{flex:0 0 auto}
+.mc-row .mc-f:first-child button{border-right:2px solid #a0a0a0}
+.mc-row .mc-f:first-child button:hover{border-right-color:#fff}
+.mc-port label{white-space:nowrap;padding-inline-end:14px}
 .mc .cur{animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .t-join{cursor:pointer}
@@ -189,8 +195,12 @@
         <div class="mc">
           <label for="mcName" data-i18n="srvName">Server Name</label>
           <button id="mcName" data-copy="Flame SMP">Flame SMP<span class="cur">_</span></button>
-          <label for="mcAddr" data-i18n="srvAddr">Server Address</label>
-          <button id="mcAddr" data-copy="flamesmp.dat.gg">flamesmp.dat.gg</button>
+          <div class="mc-row">
+            <div class="mc-f"><label for="mcAddr" data-i18n="srvAddr">Server Address</label>
+              <button id="mcAddr" data-copy="flamesmp.dat.gg">flamesmp.dat.gg</button></div>
+            <div class="mc-f mc-port"><label for="mcPort" data-i18n="srvPort">Bedrock Port</label>
+              <button id="mcPort" data-copy="17910">17910</button></div>
+          </div>
         </div>
         <div class="online" id="online"><i></i><span>Checking server…</span></div>
       </div>
@@ -227,7 +237,7 @@ fetch('https://api.mcsrvstat.us/3/' + CONFIG.serverIp)
     if (d.online){
       const n = (d.players && d.players.online) || 0;
       el.classList.add('on');
-      el.querySelector('span').textContent = t('online', fmtN(n));
+      el.querySelector('span').textContent = n < 10 ? t('srvOn') : t('online', fmtN(n));
     } else el.querySelector('span').textContent = t('offline');
   })
   .catch(() => { $('online').querySelector('span').textContent = CONFIG.serverIp; });
