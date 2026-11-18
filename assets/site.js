@@ -1,6 +1,11 @@
 /* =========================================================
    FLAME SMP: shared script (both pages)
    ========================================================= */
+/* always use the padlocked (https) address on the real domain */
+const httpsTarget = l => l.protocol === 'http:' && /(^|\.)flamesmp-store\.com$/i.test(l.hostname)
+  ? 'https://flamesmp-store.com' + l.pathname + l.search + l.hash : '';
+if (httpsTarget(location)) location.replace(httpsTarget(location));
+
 /* never run inside another site's frame (stops click-tricking overlays) */
 if (window.top !== window.self){
   document.documentElement.style.display = 'none';
@@ -53,7 +58,7 @@ const LANG = (() => {
 const LOCALE = LANG === 'no' ? 'nb' : LANG;
 function t(key, n){
   const s = (STR[LANG] && STR[LANG][key]) || STR.en[key] || key;
-  return n === undefined ? s : s.replace('{n}', n);
+  return n === undefined ? s : s.replace('{n}', () => String(n));
 }
 const fmtN = n => Number(n).toLocaleString(LOCALE);
 document.documentElement.lang = LANG;
@@ -403,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startEmbers();
   renderFooter();
   buildLegal();
-  document.querySelectorAll('[data-link]').forEach(a => { a.href = CONFIG.links[a.dataset.link] || '#'; });
+  document.querySelectorAll('[data-link]').forEach(a => { a.href = own(CONFIG.links, a.dataset.link) ? CONFIG.links[a.dataset.link] : '#'; });
   document.addEventListener('click', async e => {
     const l = e.target.closest('[data-legal]');
     if (l){ e.preventDefault(); openLegal(l.dataset.legal); return; }

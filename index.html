@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://mc-heads.net; connect-src 'self' https://open.er-api.com https://discord.com https://api.mcsrvstat.us; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://mc-heads.net; connect-src https://open.er-api.com https://discord.com https://api.mcsrvstat.us; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flame SMP | Minecraft SMP Server for Java &amp; Bedrock</title>
 <meta name="description" content="Flame SMP is a Minecraft SMP server for Java and Bedrock players. Join at flamesmp.dat.gg, get ranks, shards and crate keys in the store, and chat with the community on Discord.">
@@ -211,46 +212,6 @@
 
 <script src="assets/i18n.js"></script>
 <script src="assets/site.js"></script>
-<script>
-/* How To Join tile opens the YouTube guide (the two boxes still copy the name and address) */
-const openGuide = () => window.open(CONFIG.links.howToJoin, '_blank', 'noopener');
-$('joinTile').addEventListener('click', e => { if (!e.target.closest('[data-copy]')) openGuide(); });
-$('joinTile').addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === $('joinTile')){ e.preventDefault(); openGuide(); } });
-
-/* live Discord member count */
-fetch('https://discord.com/api/v9/invites/' + CONFIG.discordInvite + '?with_counts=true')
-  .then(r => r.json())
-  .then(d => {
-    const m = Number(d && d.approximate_member_count);
-    if (!Number.isFinite(m) || m <= 0) return;
-    countUp($('dcCount'), Math.round(m));
-    $('dcLabel').removeAttribute('data-i18n');
-    $('dcLabel').textContent = t('members');
-  })
-  .catch(() => {});
-
-/* live player count */
-fetch('https://api.mcsrvstat.us/3/' + CONFIG.serverIp)
-  .then(r => r.json())
-  .then(d => {
-    const el = $('online');
-    if (d && d.online === true){
-      const raw = Number(d.players && d.players.online);
-      const n = Number.isFinite(raw) && raw > 0 ? Math.round(raw) : 0;
-      el.classList.add('on');
-      el.querySelector('span').textContent = n < 10 ? t('srvOn') : t('online', fmtN(n));
-    } else el.querySelector('span').textContent = t('offline');
-  })
-  .catch(() => { $('online').querySelector('span').textContent = CONFIG.serverIp; });
-
-function countUp(el, to){
-  const t0 = performance.now(), dur = 1600;
-  (function step(t){
-    const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 4);
-    el.textContent = fmtN(Math.round(to * e));
-    if (p < 1) requestAnimationFrame(step);
-  })(t0);
-}
-</script>
+<script src="assets/index.js"></script>
 </body>
 </html>
