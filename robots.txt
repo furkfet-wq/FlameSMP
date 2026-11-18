@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flamesmp-store.com/sitemap.xml
