@@ -102,16 +102,14 @@
 /* how to join (minecraft-style fields) */
 .t-join .bgimg{background-image:url(img/castle-right.jpg);filter:blur(3px) brightness(.55);transform:scale(1.08)}
 .t-join:hover .bgimg{transform:scale(1.12)}
-.mc{position:absolute;left:24%;right:0;top:66px;display:grid;gap:4px;font-family:Tiny5,monospace}
+.mc{position:absolute;left:18px;right:18px;top:66px;display:grid;gap:4px;font-family:Tiny5,monospace}
 .mc label{color:#a7a7a7;font-size:22px;text-shadow:2px 2px 0 #2a2a2a}
-.mc button{display:block;width:100%;text-align:left;padding:8px 10px;background:#000;border:2px solid #a0a0a0;border-right:0;color:#fff;font-family:Tiny5,monospace;font-size:22px;margin-bottom:14px;transition:border-color .2s}
+.mc button{display:block;width:100%;text-align:left;padding:8px 10px;background:#000;border:2px solid #a0a0a0;color:#fff;font-family:Tiny5,monospace;font-size:22px;margin-bottom:14px;transition:border-color .2s}
 .mc button:hover{border-color:#fff}
 .mc-row{display:flex;gap:10px}
 .mc-f{display:grid;gap:4px;align-content:start;min-width:0;flex:1 1 auto}
 .mc-port{flex:0 0 auto}
-.mc-row .mc-f:first-child button{border-right:2px solid #a0a0a0}
-.mc-row .mc-f:first-child button:hover{border-right-color:#fff}
-.mc-port label{white-space:nowrap;padding-inline-end:14px}
+.mc-port label{white-space:nowrap}
 .mc .cur{animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .t-join{cursor:pointer}
@@ -137,7 +135,7 @@
   .row1 .t-store{grid-row:auto}
   .t-discord{height:220px}
   .tile h2{font-size:26px}
-  .mc{left:18px;top:62px}
+  .mc{top:62px}
   .mc label,.mc button{font-size:19px}
   .t-support .sup-grid{grid-template-columns:repeat(3,62px);gap:12px}
   .sup-grid span{width:62px;height:62px;border-radius:16px}
