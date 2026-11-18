@@ -72,23 +72,7 @@
 .ip-pill svg{width:26px;height:26px}
 
 /* store */
-.t-store .bgimg{background-image:url(img/banner.jpg);container-type:size}
-/* hover flames: .fx copies the banner's cover crop (1400x692) so the flames stay on the logo */
-.fx{position:absolute;left:50%;top:50%;width:max(100cqw,calc(100cqh * 2.0231));aspect-ratio:1400/692;transform:translate(-50%,-50%);pointer-events:none}
-.fx::before{content:'';position:absolute;left:50%;top:48%;width:40%;height:84%;transform:translate(-50%,-50%);border-radius:50%;opacity:0;transition:opacity .5s;
-  background:radial-gradient(closest-side,rgba(255,120,30,.45),rgba(255,60,0,.12) 65%,transparent);mix-blend-mode:screen}
-.t-store:hover .fx::before{opacity:1;animation:logoGlow 2.2s ease-in-out .5s infinite alternate}
-/* a copy of the logo cut out of the banner, which pops forward on hover */
-.logo-wrap{position:absolute;inset:0;opacity:0;transition:opacity .15s,filter .5s}
-.logo-pop{position:absolute;inset:0;background:url(img/banner.jpg) center/100% 100%;transform-origin:50% 48%;
-  clip-path:polygon(50% 15.03%,54.29% 15.61%,58% 17.77%,60.86% 21.39%,62.71% 26.01%,63.79% 31.79%,64.5% 39.02%,64.86% 47.69%,64.64% 56.36%,63.79% 63.58%,62.36% 69.36%,60.5% 73.84%,58% 77.6%,54.43% 80.06%,50% 80.92%,45.57% 80.06%,42% 77.6%,39.5% 73.84%,37.64% 69.36%,36.21% 63.58%,35.36% 56.36%,35.14% 47.69%,35.5% 39.02%,36.21% 31.79%,37.29% 26.01%,39.14% 21.39%,42% 17.77%,45.71% 15.61%);
-  transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
-.logo-pop i{position:absolute;top:-5%;bottom:-5%;left:28%;width:10%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);transform:translateX(-100%) skewX(-20deg)}
-.t-store:hover .logo-wrap{opacity:1;filter:drop-shadow(0 0 16px rgba(255,110,30,.65)) drop-shadow(0 12px 16px rgba(0,0,0,.55))}
-.t-store:hover .logo-pop{transform:translateY(-1.5%) scale(1.08)}
-.t-store:hover .logo-pop i{animation:logoShine 1.2s var(--ease) .2s both}
-@keyframes logoShine{to{left:75%}}
-@keyframes logoGlow{to{opacity:.65}}
+.t-store .bgimg{background-image:url(img/banner.jpg)}
 
 /* discord */
 .t-discord{display:grid;place-items:center;text-align:center;background:linear-gradient(165deg,#1d2036,#16182a);border:1px solid #262a45}
@@ -176,7 +160,7 @@
         </button>
       </div>
       <a class="tile t-store rise" style="--d:90ms" href="store.html">
-        <div class="bgimg"><div class="fx" aria-hidden="true"><div class="logo-wrap"><div class="logo-pop"><i></i></div></div></div></div>
+        <div class="bgimg"></div>
         <h2 data-i18n="store">Store</h2><span class="sub" data-i18n="browse">Browse the store</span>
       </a>
       <a class="tile t-discord rise" style="--d:180ms" data-link="discord" target="_blank" rel="noopener">
