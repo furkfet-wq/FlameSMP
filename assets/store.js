@@ -2,18 +2,18 @@
    PAYMENT LINKS (one per product)
    ========================================================= */
 const PAY = {
-  flame:     { stripe:'https://buy.stripe.com/28E9AUceLdYf0xlaza1ZS0x', paypal:'https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-39600916UC2458503NLZB4QA' },
-  flameplus: { stripe:'https://buy.stripe.com/00wfZia6D5rJ4NBcHi1ZS0y', paypal:'https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-8HC10963A5012612NNLZCADY' },
-  flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z', paypal:'https://www.paypal.com/webapps/billing/plans/subscribe?plan_id=P-9P173021AT744683RNLZCAMA' },
-  custom:    { stripe:'https://buy.stripe.com/dRm6oI1A73jB1Bp22E1ZS0A', paypal:'https://www.paypal.com/ncp/payment/EVXSS27WD5Q96' },
-  s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f', paypal:'https://www.paypal.com/ncp/payment/PWCQSRH5EK7L4' },
-  s1250:     { stripe:'https://buy.stripe.com/3cIfZi1A73jBeobfTu1ZS0g', paypal:'https://www.paypal.com/ncp/payment/G44A5MNGRWZNL' },
-  s3000:     { stripe:'https://buy.stripe.com/5kQ4gAfqX7zR6VJ8r21ZS0h', paypal:'https://www.paypal.com/ncp/payment/KSPJUJ4D3QB4W' },
-  s8000:     { stripe:'https://buy.stripe.com/dRm00kbaH1bt0xlcHi1ZS0i', paypal:'https://www.paypal.com/ncp/payment/RDA6EEPCUFVNL' },
-  common:    { stripe:'https://buy.stripe.com/aFadRa4Mj4nF7ZN4aM1ZS0k', paypal:'https://www.paypal.com/ncp/payment/BVQWHF9JN2K44' },
-  epic:      { stripe:'https://buy.stripe.com/8x24gA2Eb5rJeobcHi1ZS0l', paypal:'https://www.paypal.com/ncp/payment/RE6AC49Z9ANJN' },
-  spawner:   { stripe:'https://buy.stripe.com/aFabJ2emT6vNbbZ4aM1ZS0m', paypal:'https://www.paypal.com/ncp/payment/P2KYQUFDV5SS4' },
-  mythic:    { stripe:'https://buy.stripe.com/cNi5kE1A71btdk7cHi1ZS0n', paypal:'https://www.paypal.com/ncp/payment/LRR6RBEW92P7Y' }
+  flame:     { stripe:'https://buy.stripe.com/28E9AUceLdYf0xlaza1ZS0x' },
+  flameplus: { stripe:'https://buy.stripe.com/00wfZia6D5rJ4NBcHi1ZS0y' },
+  flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z' },
+  custom:    { stripe:'https://buy.stripe.com/dRm6oI1A73jB1Bp22E1ZS0A' },
+  s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f' },
+  s1250:     { stripe:'https://buy.stripe.com/3cIfZi1A73jBeobfTu1ZS0g' },
+  s3000:     { stripe:'https://buy.stripe.com/5kQ4gAfqX7zR6VJ8r21ZS0h' },
+  s8000:     { stripe:'https://buy.stripe.com/dRm00kbaH1bt0xlcHi1ZS0i' },
+  common:    { stripe:'https://buy.stripe.com/aFadRa4Mj4nF7ZN4aM1ZS0k' },
+  epic:      { stripe:'https://buy.stripe.com/8x24gA2Eb5rJeobcHi1ZS0l' },
+  spawner:   { stripe:'https://buy.stripe.com/aFabJ2emT6vNbbZ4aM1ZS0m' },
+  mythic:    { stripe:'https://buy.stripe.com/cNi5kE1A71btdk7cHi1ZS0n' }
 };
 
 /* =========================================================
@@ -251,7 +251,6 @@ function fillCheckout(id){
   $('coName').textContent = player;
   $('coNote').textContent = p.note + ' ' + t('noteRest', player) + (isConverted() ? ' ' + t('gbpNote') : '');
   $('payStripe').hidden = !PAY[id].stripe;
-  $('payPaypal').hidden = !PAY[id].paypal;
 }
 function openCheckout(id){
   if (!own(PAY, id)) return;
@@ -275,7 +274,6 @@ function pay(method){
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-buy]'); if (b) openCheckout(b.dataset.buy); });
 $('payStripe').onclick = () => pay('stripe');
-$('payPaypal').onclick = () => pay('paypal');
 $('coChange').onclick = () => openIdentify(current);
 $('coClose').onclick = () => closeOverlay($('checkout'));
 $('checkout').addEventListener('click', e => { if (e.target === $('checkout')) closeOverlay($('checkout')); });

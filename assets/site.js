@@ -207,7 +207,7 @@ const LEGAL = {
       <li>Sending essential order receipts or providing customer support when requested.</li>
     </ul>
     <h4>4. No Third-Party Sharing or Sale</h4>
-    <p>Your personal data is never sold, shared, rented, traded, or monetized under any circumstances. We will only share data with trusted third-party service providers (such as our payment processors, Stripe and PayPal) solely to the extent necessary to complete your purchase.</p>
+    <p>Your personal data is never sold, shared, rented, traded, or monetized under any circumstances. We will only share data with trusted third-party service providers (such as our payment processor, Stripe) solely to the extent necessary to complete your purchase.</p>
     <h4>5. Your Rights &amp; Data Retention</h4>
     <p>We retain transaction logs only for as long as necessary to fulfill accounting, security, and legal requirements. If you have questions about the data associated with your account or wish to request data removal, please contact our support team through our official Discord server.</p>` },
 
@@ -247,7 +247,7 @@ const LEGAL = {
     <h4>5. Exceptional Circumstances</h4>
     <p>In rare cases (such as a technical system error leading to double billing), Flame SMP management may, at its sole discretion, review and approve a refund or issue store credit. Any approved exception is handled on a case-by-case basis and does not establish a precedent or legal obligation for future requests.</p>
     <h4>6. Payments &amp; Fulfilment</h4>
-    <p>Payments on this store are processed securely by Stripe and PayPal. Flame SMP handles product fulfilment and billing support.</p>
+    <p>Payments on this store are processed securely by Stripe. Flame SMP handles product fulfilment and billing support.</p>
     <h4>7. Statutory Consumer Rights</h4>
     <p>Nothing in this Refund Policy excludes, restricts, or modifies any consumer rights or statutory guarantees that cannot be excluded under applicable consumer protection laws (including UK, EU, US, and local jurisdiction rules).</p>
     <h4>8. Contact &amp; Support</h4>

@@ -6,12 +6,12 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flame SMP Store | Ranks, Shards &amp; Crate Keys</title>
-<meta name="description" content="Official Flame SMP store: buy Minecraft ranks, shards and crate keys for the Flame SMP server. Pay by card or PayPal.">
+<meta name="description" content="Official Flame SMP store: buy Minecraft ranks, shards and crate keys for the Flame SMP server. Pay by card.">
 <link rel="canonical" href="https://flamesmp-store.com/store.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Flame SMP">
 <meta property="og:title" content="Flame SMP Store | Ranks, Shards &amp; Crate Keys">
-<meta property="og:description" content="Ranks, shards and crate keys for the Flame SMP Minecraft server. Pay by card or PayPal.">
+<meta property="og:description" content="Ranks, shards and crate keys for the Flame SMP Minecraft server. Pay by card.">
 <meta property="og:url" content="https://flamesmp-store.com/store.html">
 <meta property="og:image" content="https://flamesmp-store.com/img/banner.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -122,7 +122,7 @@
 .id-title .l1{color:#ededed}
 .id-title .l2{color:var(--accent-2)}
 .id-form{width:min(460px,100%);margin:0 auto;text-align:left}
-.id-ed{display:flex;gap:10px;margin-bottom:16px}
+.id-ed{display:flex;gap:10px;margin-top:12px}
 .id-ed button{flex:1;padding:12px;border-radius:12px;background:#262626;border:2px solid #4a4a4a;color:#a8a8a8;font:800 15px Montserrat,sans-serif;letter-spacing:.5px;cursor:pointer;transition:border-color .2s,color .2s,background .2s,box-shadow .2s,transform .15s}
 .id-ed button:hover{border-color:#6a6a6a;color:#e5e5e5}
 .id-ed button:active{transform:scale(.97)}
@@ -164,9 +164,6 @@
 .pay svg{width:19px;height:19px}
 .pay small{font-weight:600;opacity:.75;font-size:12px}
 .pay-stripe{background:#635bff;color:#fff}
-.pay-paypal{background:#ffc439;color:#111}
-.pp{font-style:italic;font-weight:900;font-size:17px}
-.pp i:first-child{color:#003087}.pp i:last-child{color:#009cde}
 .co-note{font-size:13.5px;color:#8a8a8a;line-height:1.6;margin-top:6px}
 
 @media (max-width:820px){
@@ -208,7 +205,7 @@
 <main>
   <div class="store-head rise">
     <h1 data-i18n="store">Store</h1>
-    <p data-i18n="storeSub">Ranks, shards and crate keys for Flame SMP. Pay by card or PayPal.</p>
+    <p data-i18n="storeSub">Ranks, shards and crate keys for Flame SMP.</p>
   </div>
   <div class="wrap">
     <div class="sec-label rise" style="--d:80ms" data-i18n="ranks">Ranks</div>
@@ -228,15 +225,15 @@
     <div class="id-kick" data-i18n="welcome">Welcome to Flame SMP</div>
     <h2 class="id-title" id="idTitle"><span class="l1" data-i18n="id1">IDENTIFY</span><span class="l2" data-i18n="id2">YOURSELF</span></h2>
     <form class="id-form" id="idForm" autocomplete="off" novalidate>
-      <div class="id-ed" id="idEd" role="group" aria-label="Minecraft edition">
-        <button type="button" data-ed="java" class="on" aria-pressed="true">Java</button>
-        <button type="button" data-ed="bedrock" aria-pressed="false">Bedrock</button>
-      </div>
       <label class="id-label" for="idInput" data-i18n="yourName">Your Minecraft username</label>
       <div class="id-field" id="idField">
         <img id="idHead" src="https://mc-heads.net/avatar/MHF_Steve/40" alt="">
         <input id="idInput" data-i18n-ph="typeName" placeholder="Type your username" maxlength="17" spellcheck="false" autocapitalize="off">
         <svg class="pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+      </div>
+      <div class="id-ed" id="idEd" role="group" aria-label="Minecraft edition">
+        <button type="button" data-ed="java" class="on" aria-pressed="true">Java</button>
+        <button type="button" data-ed="bedrock" aria-pressed="false">Bedrock</button>
       </div>
       <button type="submit" class="id-go" data-i18n="cont">Continue</button>
     </form>
@@ -262,7 +259,6 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg>
         <span data-i18n="payCard">Pay with card</span> <small data-i18n="viaStripe">via Stripe</small>
       </button>
-      <button class="pay pay-paypal" id="payPaypal" aria-label="PayPal"><span data-i18n="payWith">Pay with</span> <b class="pp"><i>Pay</i><i>Pal</i></b></button>
       <p class="co-note" id="coNote"></p>
     </div>
     <div class="mfoot" data-i18n="notAssoc">Not associated with Mojang or Microsoft</div>
