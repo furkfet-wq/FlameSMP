@@ -156,11 +156,20 @@ $('coClose').innerHTML = ICONS.close;
 /* =========================================================
    USERNAME ("Identify yourself")
    ========================================================= */
-let player = '';
-try { player = localStorage.getItem('flame-ign') || ''; } catch {}
-if (!NAME_RE.test(player)) player = '';
-let pending = null, headTimer;
-const head = (n, s) => `https://mc-heads.net/avatar/${NAME_RE.test(n) ? n : 'MHF_Steve'}/${s}`;
+/* Java or Bedrock. Bedrock players join through Floodgate as ".Name"; the dot is never shown on the
+   site: Stripe gets "be-Name" (it allows no dots) and the delivery Worker turns that into ".Name". */
+const BE_RE = /^[A-Za-z0-9_]{1,15}$/;
+const validName = (n, ed) => (ed === 'bedrock' ? BE_RE : NAME_RE).test(n);
+let edition = 'java', player = '';
+try {
+  edition = localStorage.getItem('flame-ed') === 'bedrock' ? 'bedrock' : 'java';
+  player = localStorage.getItem('flame-ign') || '';
+} catch {}
+if (!validName(player, edition)) player = '';
+let pending = null, headTimer, pickEd = edition;
+// Bedrock skins aren't on mc-heads, so Bedrock players get the default head
+const head = (n, s, ed = edition) =>
+  `https://mc-heads.net/avatar/${ed === 'java' && NAME_RE.test(n) ? n : 'MHF_Steve'}/${s}`;
 
 function renderUser(){
   const b = $('userBtn');
@@ -171,10 +180,22 @@ function renderUser(){
   } else b.innerHTML = `${svg('user', 2.4)} ${t('login')}`;
   $('userBtn').setAttribute('aria-label', player ? t('change') + ': ' + player : t('yourName'));
 }
+function setPickEd(ed){
+  pickEd = ed === 'bedrock' ? 'bedrock' : 'java';
+  document.querySelectorAll('#idEd button').forEach(b => {
+    const on = b.dataset.ed === pickEd;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  $('idInput').maxLength = pickEd === 'bedrock' ? 15 : 17;
+  $('idHead').src = head($('idInput').value.trim(), 40, pickEd);
+  $('idForm').classList.remove('bad');
+}
+document.querySelectorAll('#idEd button').forEach(b => b.addEventListener('click', () => { setPickEd(b.dataset.ed); $('idInput').focus(); }));
 function openIdentify(next){
   pending = next || null;
   $('idInput').value = player;
-  $('idHead').src = head(player, 40);
+  setPickEd(edition);
   $('idForm').classList.remove('bad');
   closeOverlay($('checkout'));
   const o = $('identify');
@@ -184,17 +205,19 @@ function openIdentify(next){
 $('idInput').addEventListener('input', () => {
   $('idForm').classList.remove('bad');
   clearTimeout(headTimer);
-  headTimer = setTimeout(() => { $('idHead').src = head($('idInput').value.trim(), 40); }, 350);
+  headTimer = setTimeout(() => { $('idHead').src = head($('idInput').value.trim(), 40, pickEd); }, 350);
 });
 $('idForm').addEventListener('submit', e => {
   e.preventDefault();
-  const v = $('idInput').value.trim();
-  if (!NAME_RE.test(v)){
+  let v = $('idInput').value.trim();
+  if (pickEd === 'bedrock') v = v.replace(/ +/g, '_').replace(/^\./, ''); // gamertag spaces become _ in-game; never show the dot
+  if (!validName(v, pickEd)){
     const f = $('idForm'); f.classList.remove('bad'); void f.offsetWidth; f.classList.add('bad');
     return toast(t('badName'));
   }
   player = v;
-  try { localStorage.setItem('flame-ign', v); } catch {}
+  edition = pickEd;
+  try { localStorage.setItem('flame-ign', v); localStorage.setItem('flame-ed', edition); } catch {}
   renderUser();
   closeOverlay($('identify'));
   toast(t('hello', v));
@@ -238,11 +261,14 @@ function openCheckout(id){
   openOverlay($('checkout'));
 }
 function pay(method){
-  if (!own(PAY, current) || !NAME_RE.test(player)) return;
+  if (!own(PAY, current) || !validName(player, edition)) return;
   let url = PAY[current][method];
   if (!url) return;
   // Stripe shows this on the payment as the "client reference ID", so you know who to deliver to
-  if (method === 'stripe') url += (url.includes('?') ? '&' : '?') + 'client_reference_id=' + encodeURIComponent(player);
+  if (method === 'stripe') {
+    const ref = edition === 'bedrock' ? 'be-' + player : player;
+    url += (url.includes('?') ? '&' : '?') + 'client_reference_id=' + encodeURIComponent(ref);
+  }
   window.open(url, '_blank', 'noopener');
   closeOverlay($('checkout'));
   toast(t('opened'));
