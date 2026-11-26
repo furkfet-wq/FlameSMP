@@ -7,6 +7,7 @@ const PAY = {
   flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z' },
   prestige:  { stripe:'https://buy.stripe.com/dRmcN6ceL3jB93RbDe1ZS0B' },
   keybundle: { stripe:'https://buy.stripe.com/eVq6oI92zaM393RbDe1ZS0D' },
+  enhancedbundle: { stripe:'https://buy.stripe.com/14A28sbaHaM3dk76iU1ZS0E' },
   s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f' },
   s1250:     { stripe:'https://buy.stripe.com/3cIfZi1A73jBeobfTu1ZS0g' },
   s3000:     { stripe:'https://buy.stripe.com/5kQ4gAfqX7zR6VJ8r21ZS0h' },
@@ -38,7 +39,10 @@ const RANKS = [
 const BUNDLES = [
   { id:'keybundle', name:'Key Bundle', price:22.5, off:16, crest:['#d9ffe6','#22c55e'], key:true,
     grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
-    loot:[['img/key-common.png','2x','Common Key'],['img/key-epic.png','2x','Epic Key'],['img/key-spawner.png','2x','Spawner Key'],['img/key-mythic.png','2x','Mythic Key'],['img/shard-2.png',1250,'Shards']] }
+    loot:[['img/key-common.png','2x','Common Key'],['img/key-epic.png','2x','Epic Key'],['img/key-spawner.png','2x','Spawner Key'],['img/key-mythic.png','2x','Mythic Key'],['img/shard-2.png',1250,'Shards']] },
+  { id:'enhancedbundle', name:'Enhanced Key Bundle', price:45, off:21, crest:['#fff3b0','#f59e0b'], key:true, big:true,
+    grad:'linear-gradient(100deg,#ffd36b,#f5a524)', ink:'#2a1600', glow:'rgba(245,165,36,.7)',
+    loot:[['img/key-common.png','4x','Common Key'],['img/key-epic.png','4x','Epic Key'],['img/key-spawner.png','4x','Spawner Key'],['img/key-mythic.png','4x','Mythic Key'],['img/shard-3.png',3000,'Shards']] }
 ];
 const SHARDS = [
   { id:'s500',  amt:500,  price:5,  img:'img/shard-1.png' },
