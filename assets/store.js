@@ -32,7 +32,7 @@ const RANKS = [
     perks:[['shard','sh',2500],['home','pHomes',10],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame ++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
   { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4, big:true,
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
-    perks:[['shard','sh',8000],['home','pHomes',15],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
+    perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
 ];
 /* bundles look like ranks; key = key art for the perk icon */
 const BUNDLES = [
