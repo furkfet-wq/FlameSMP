@@ -192,6 +192,16 @@ function renderProducts(first){
 }
 renderProducts(true);
 $('saleOff').textContent = t('off', 20);
+
+/* winter sale countdown; the ribbon removes itself when the code expires */
+const SALE_END = Date.parse('2026-12-26T23:59:59Z');
+(function saleTick(){
+  const left = Math.floor((SALE_END - Date.now()) / 1000), el = $('saleTime');
+  if (left <= 0) { el.closest('.sale').remove(); return; }
+  const p = n => String(n).padStart(2, '0');
+  el.textContent = `${Math.floor(left / 86400)}d ${p(Math.floor(left / 3600) % 24)}:${p(Math.floor(left / 60) % 60)}:${p(left % 60)}`;
+  setTimeout(saleTick, 1000);
+})();
 // the Flame++ ring repaints every frame; pause it (and its shine) while it is scrolled out of view
 const featIO = 'IntersectionObserver' in window
   ? new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('still', !e.isIntersecting))) : null;
