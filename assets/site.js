@@ -262,7 +262,7 @@ function renderFooter(){
   f.className = 'foot rise';
   f.style.setProperty('--d', '500ms');
   f.innerHTML = `
-    <a href="index.html" class="fbrand"><img src="img/logo.png" alt="">FLAMESMP.DAT.GG</a>
+    <a href="index.html" class="fbrand"><img src="img/logo.webp" alt="" loading="lazy" decoding="async">FLAMESMP.DAT.GG</a>
     <span class="fnote">${t('notAssoc')}</span>
     <div class="soc">
       <a data-link="youtube" target="_blank" rel="noopener" aria-label="YouTube">${ICONS.youtube}</a>
@@ -292,7 +292,7 @@ function buildLegal(){
   o.innerHTML = `
     <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
       <div class="mhead">
-        <div class="ic"><img src="img/logo.png" alt=""></div>
+        <div class="ic"><img src="img/logo.webp" alt=""></div>
         <div><h3 id="legalTitle"></h3><div class="kick">Flame SMP Store</div></div>
         <button class="mclose" aria-label="Close">${ICONS.close}</button>
       </div>
@@ -369,11 +369,27 @@ function startEmbers(){
   anchor ? anchor.after(cv) : document.body.prepend(cv);
   const ctx = cv.getContext('2d');
   let W, H, parts = [], last = 0, run = true;
-  const spawn = any => ({
-    x: Math.random() * W, y: any ? Math.random() * H : H + 10,
-    r: 1 + Math.random() * 2.2, vy: 12 + Math.random() * 22, sway: Math.random() * 6.28,
-    sw: 6 + Math.random() * 14, hue: 14 + Math.random() * 28, a: .25 + Math.random() * .5
-  });
+  // each ember's glow is drawn once into its own small sprite; every frame only stamps it with globalAlpha
+  // (same picture as building a radial gradient per ember per frame, far less CPU)
+  const sprite = (r, hue) => {
+    const R = r * 5, n = Math.ceil(R * 2) + 2, c = document.createElement('canvas');
+    c.width = c.height = n;
+    const x = c.getContext('2d'), g = x.createRadialGradient(n / 2, n / 2, 0, n / 2, n / 2, R);
+    g.addColorStop(0, `hsla(${hue + 20},100%,72%,1)`);
+    g.addColorStop(.35, `hsla(${hue},100%,55%,.55)`);
+    g.addColorStop(1, `hsla(${hue},100%,50%,0)`);
+    x.fillStyle = g; x.beginPath(); x.arc(n / 2, n / 2, R, 0, 6.283); x.fill();
+    return c;
+  };
+  const spawn = any => {
+    const p = {
+      x: Math.random() * W, y: any ? Math.random() * H : H + 10,
+      r: 1 + Math.random() * 2.2, vy: 12 + Math.random() * 22, sway: Math.random() * 6.28,
+      sw: 6 + Math.random() * 14, hue: 14 + Math.random() * 28, a: .25 + Math.random() * .5
+    };
+    p.img = sprite(p.r, p.hue);
+    return p;
+  };
   function size(){
     W = cv.width = innerWidth; H = cv.height = innerHeight;
     const n = Math.round(Math.min(60, W / 26));
@@ -392,12 +408,12 @@ function startEmbers(){
       const x = p.x + Math.sin(p.sway) * p.sw;
       if (p.y < -20){ parts[i] = spawn(false); continue; }
       const fade = Math.min(1, p.y / (H * .5)) * p.a * (.7 + .3 * Math.sin(now / 400 + p.sway * 3));
-      const g = ctx.createRadialGradient(x, p.y, 0, x, p.y, p.r * 5);
-      g.addColorStop(0, `hsla(${p.hue + 20},100%,72%,${fade})`);
-      g.addColorStop(.35, `hsla(${p.hue},100%,55%,${fade * .55})`);
-      g.addColorStop(1, `hsla(${p.hue},100%,50%,0)`);
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, p.y, p.r * 5, 0, 6.283); ctx.fill();
+      if (fade <= 0) continue;
+      const h = p.img.width / 2;
+      ctx.globalAlpha = fade;
+      ctx.drawImage(p.img, x - h, p.y - h);
     }
+    ctx.globalAlpha = 1;
   }
   addEventListener('resize', size); size();
   document.addEventListener('visibilitychange', () => { run = !document.hidden; if (run){ last = performance.now(); requestAnimationFrame(tick); } });

@@ -39,22 +39,22 @@ const RANKS = [
 const BUNDLES = [
   { id:'keybundle', name:'Key Bundle', price:22.5, off:16, crest:['#d9ffe6','#22c55e'], key:true,
     grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
-    loot:[['img/key-common.png','2x','Common Key'],['img/key-epic.png','2x','Epic Key'],['img/key-spawner.png','2x','Spawner Key'],['img/key-mythic.png','2x','Mythic Key'],['img/shard-2.png',1250,'Shards']] },
+    loot:[['img/key-common.webp','2x','Common Key'],['img/key-epic.webp','2x','Epic Key'],['img/key-spawner.webp','2x','Spawner Key'],['img/key-mythic.webp','2x','Mythic Key'],['img/shard-2.webp',1250,'Shards']] },
   { id:'enhancedbundle', name:'Enhanced Bundle', price:45, off:21, crest:['#fff3b0','#f59e0b'], key:true, big:true,
     grad:'linear-gradient(100deg,#ffd36b,#f5a524)', ink:'#2a1600', glow:'rgba(245,165,36,.7)',
-    loot:[['img/key-common.png','4x','Common Key'],['img/key-epic.png','4x','Epic Key'],['img/key-spawner.png','4x','Spawner Key'],['img/key-mythic.png','4x','Mythic Key'],['img/shard-3.png',3000,'Shards']] }
+    loot:[['img/key-common.webp','4x','Common Key'],['img/key-epic.webp','4x','Epic Key'],['img/key-spawner.webp','4x','Spawner Key'],['img/key-mythic.webp','4x','Mythic Key'],['img/shard-3.webp',3000,'Shards']] }
 ];
 const SHARDS = [
-  { id:'s500',  amt:500,  price:5,  img:'img/shard-1.png' },
-  { id:'s1250', amt:1250, price:10, img:'img/shard-2.png' },
-  { id:'s3000', amt:3000, price:20, img:'img/shard-3.png' },
-  { id:'s8000', amt:8000, price:50, img:'img/shard-4.png', best:true }
+  { id:'s500',  amt:500,  price:5,  img:'img/shard-1.webp' },
+  { id:'s1250', amt:1250, price:10, img:'img/shard-2.webp' },
+  { id:'s3000', amt:3000, price:20, img:'img/shard-3.webp' },
+  { id:'s8000', amt:8000, price:50, img:'img/shard-4.webp', best:true }
 ];
 const KEYS = [
-  { id:'common',  name:'Common Key',  price:.40, c:'#4ade80', ink:'#062a12', img:'img/key-common.png' },
-  { id:'epic',    name:'Epic Key',    price:1,   c:'#b56cff', ink:'#ffffff', img:'img/key-epic.png', popular:true },
-  { id:'spawner', name:'Spawner Key', price:3,   c:'#fbbf24', ink:'#2a1600', img:'img/key-spawner.png' },
-  { id:'mythic',  name:'Mythic Key',  price:4,   c:'#f43f5e', ink:'#ffffff', img:'img/key-mythic.png' }
+  { id:'common',  name:'Common Key',  price:.40, c:'#4ade80', ink:'#062a12', img:'img/key-common.webp' },
+  { id:'epic',    name:'Epic Key',    price:1,   c:'#b56cff', ink:'#ffffff', img:'img/key-epic.webp', popular:true },
+  { id:'spawner', name:'Spawner Key', price:3,   c:'#fbbf24', ink:'#2a1600', img:'img/key-spawner.webp' },
+  { id:'mythic',  name:'Mythic Key',  price:4,   c:'#f43f5e', ink:'#ffffff', img:'img/key-mythic.webp' }
 ];
 
 const P = {
@@ -144,14 +144,14 @@ function renderProducts(first){
       ${r.featured ? '<span class="shine" aria-hidden="true"></span>' : ''}
       ${r.off ? `<span class="off-tag">${t('off', r.off)}</span>` : ''}
       <div>
-        <div class="rname"><img src="img/logo.png" alt="">${r.name}</div>
+        <div class="rname"><img src="img/logo.webp" alt="">${r.name}</div>
         <div class="rprice">${money(r.price)} ${t(r.monthly ? 'perMonth' : 'oneTime')}</div>
         ${r.key ? '' : `<div class="rnote">${t(r.monthly ? 'renews' : 'lifetime')}</div>`}
         ${r.featured ? `<span class="save-chip">${t('mostShards')}</span>` : ''}
         <div class="ractions"><button class="rbuy" data-buy="${r.id}">${t(r.monthly ? 'subscribe' : 'buyNow')}</button></div>
       </div>
       ${r.loot
-        ? `<ul class="loot">${r.loot.map(([img, n, nm], k) => `<li style="--k:${k}"><img src="${img}" alt=""><b>${typeof n === 'number' ? fmtN(n) : n}</b><span>${nm}</span></li>`).join('')}</ul>`
+        ? `<ul class="loot">${r.loot.map(([img, n, nm], k) => `<li style="--k:${k}"><img src="${img}" alt="" loading="lazy" decoding="async"><b>${typeof n === 'number' ? fmtN(n) : n}</b><span>${nm}</span></li>`).join('')}</ul>`
         : `<ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${ic.includes('/') ? `<img src="${ic}" alt="">` : svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>`}
       <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${r.key ? crate(r, i) : crest(r, i, pre)}</div>
     </div>`;
@@ -169,7 +169,7 @@ function renderProducts(first){
     const bonus = Math.round((s.amt / s.price / base - 1) * 100);
     return `<div class="card rise ${s.best ? 'pop' : ''}" style="--c:${s.best ? '#ff7a1f' : '#c084fc'};--ink:#1d0b00;--d:${i*70}ms">
       ${s.best ? `<span class="badge">${t('best')}</span>` : ''}
-      <div class="art"><img src="${s.img}" alt="" style="--fd:-${i*1.3}s"></div>
+      <div class="art"><img src="${s.img}" alt="" loading="lazy" decoding="async" style="--fd:-${i*1.3}s"></div>
       <div class="nm" style="color:#c084fc">${fmtN(s.amt)} Shards</div>
       <div class="pr">${money(s.price)}</div>
       <span class="chip ${bonus > 0 ? '' : 'none'}">${bonus > 0 ? t('bonus', bonus) : t('starter')}</span>
@@ -180,7 +180,7 @@ function renderProducts(first){
   $('keys').innerHTML = KEYS.map((k,i) => `
     <div class="card rise ${k.popular ? 'pop' : ''}" style="--c:${k.c};--ink:${k.ink};--d:${i*70}ms">
       ${k.popular ? `<span class="badge">${t('popular')}</span>` : ''}
-      <div class="art"><img src="${k.img}" alt="" style="--fd:-${i*1.4}s"></div>
+      <div class="art"><img src="${k.img}" alt="" loading="lazy" decoding="async" style="--fd:-${i*1.4}s"></div>
       <div class="nm">${k.name}</div>
       <div class="pr">${money(k.price)}</div>
       <div class="per">${t('perKey')}</div>
@@ -191,7 +191,12 @@ function renderProducts(first){
   if (!first) ['ranks','bundles','shards','keys'].forEach(id => $(id).querySelectorAll('.rise').forEach(el => el.classList.remove('rise')));
 }
 renderProducts(true);
-window.onCurrencyChange = () => { renderProducts(false); if ($('checkout').classList.contains('open') && current) fillCheckout(current); };
+// the Flame++ ring repaints every frame; pause it (and its shine) while it is scrolled out of view
+const featIO = 'IntersectionObserver' in window
+  ? new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('still', !e.isIntersecting))) : null;
+const watchFeat = () => { if (featIO) { featIO.disconnect(); document.querySelectorAll('.feat').forEach(el => featIO.observe(el)); } };
+watchFeat();
+window.onCurrencyChange = () => { renderProducts(false); watchFeat(); if ($('checkout').classList.contains('open') && current) fillCheckout(current); };
 
 $('idClose').innerHTML = ICONS.close;
 $('coClose').innerHTML = ICONS.close;
@@ -277,9 +282,9 @@ renderUser();
 let current = null;
 function product(id){
   const r = RANKS.find(x => x.id === id);
-  if (r) return { title: r.name, gbp: r.price, per: t(r.monthly ? 'perMonth' : 'oneTime'), img: 'img/logo.png', cover: true, note: t(r.monthly ? 'noteM' : 'noteO') };
+  if (r) return { title: r.name, gbp: r.price, per: t(r.monthly ? 'perMonth' : 'oneTime'), img: 'img/logo.webp', cover: true, note: t(r.monthly ? 'noteM' : 'noteO') };
   const b = BUNDLES.find(x => x.id === id);
-  if (b) return { title: b.name, gbp: b.price, per: t('oneTime'), img: 'img/key-mythic.png', note: t('noteO') };
+  if (b) return { title: b.name, gbp: b.price, per: t('oneTime'), img: 'img/key-mythic.webp', note: t('noteO') };
   const s = SHARDS.find(x => x.id === id);
   if (s) return { title: fmtN(s.amt) + ' Shards', gbp: s.price, per: t('oneTime'), img: s.img, note: t('noteO') };
   const k = KEYS.find(x => x.id === id);
