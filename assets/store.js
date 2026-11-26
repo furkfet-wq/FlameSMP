@@ -34,11 +34,11 @@ const RANKS = [
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
     perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
 ];
-/* bundles look like ranks; key = key art for the perk icon */
+/* bundles look like ranks (crate art instead of a shield); loot = [picture, amount, name] shown as tiles */
 const BUNDLES = [
   { id:'keybundle', name:'Key Bundle', price:22.5, off:16, crest:['#d9ffe6','#22c55e'], key:true,
     grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
-    perks:[['img/key-common.png','raw','2x Common Key'],['img/key-epic.png','raw','2x Epic Key'],['img/key-spawner.png','raw','2x Spawner Key'],['img/key-mythic.png','raw','2x Mythic Key'],['shard','sh',1250]] }
+    loot:[['img/key-common.png','2x','Common Key'],['img/key-epic.png','2x','Epic Key'],['img/key-spawner.png','2x','Spawner Key'],['img/key-mythic.png','2x','Mythic Key'],['img/shard-2.png',1250,'Shards']] }
 ];
 const SHARDS = [
   { id:'s500',  amt:500,  price:5,  img:'img/shard-1.png' },
@@ -146,7 +146,9 @@ function renderProducts(first){
         ${r.featured ? `<span class="save-chip">${t('mostShards')}</span>` : ''}
         <div class="ractions"><button class="rbuy" data-buy="${r.id}">${t(r.monthly ? 'subscribe' : 'buyNow')}</button></div>
       </div>
-      <ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${ic.includes('/') ? `<img src="${ic}" alt="">` : svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>
+      ${r.loot
+        ? `<ul class="loot">${r.loot.map(([img, n, nm], k) => `<li style="--k:${k}"><img src="${img}" alt=""><b>${typeof n === 'number' ? fmtN(n) : n}</b><span>${nm}</span></li>`).join('')}</ul>`
+        : `<ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${ic.includes('/') ? `<img src="${ic}" alt="">` : svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>`}
       <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${r.key ? crate(r, i) : crest(r, i, pre)}</div>
     </div>`;
   $('ranks').innerHTML = RANKS.map((r,i) => {
