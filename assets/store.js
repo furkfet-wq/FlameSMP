@@ -33,7 +33,7 @@ const RANKS = [
     perks:[['shard','sh',2500],['home','pHomes',10],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame ++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
   { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4, big:true,
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
-    perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
+    perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
 ];
 /* bundles look like ranks (crate art instead of a shield); loot = [picture, amount, name] shown as tiles */
 const BUNDLES = [
@@ -191,6 +191,7 @@ function renderProducts(first){
   if (!first) ['ranks','bundles','shards','keys'].forEach(id => $(id).querySelectorAll('.rise').forEach(el => el.classList.remove('rise')));
 }
 renderProducts(true);
+$('saleOff').textContent = t('off', 20);
 // the Flame++ ring repaints every frame; pause it (and its shine) while it is scrolled out of view
 const featIO = 'IntersectionObserver' in window
   ? new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('still', !e.isIntersecting))) : null;
