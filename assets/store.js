@@ -6,7 +6,7 @@ const PAY = {
   flameplus: { stripe:'https://buy.stripe.com/00wfZia6D5rJ4NBcHi1ZS0y' },
   flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z' },
   prestige:  { stripe:'https://buy.stripe.com/dRmcN6ceL3jB93RbDe1ZS0B' },
-  keybundle: { stripe:'https://buy.stripe.com/4gM7sM4Mjf2j5RF9v61ZS0C' },
+  keybundle: { stripe:'https://buy.stripe.com/eVq6oI92zaM393RbDe1ZS0D' },
   s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f' },
   s1250:     { stripe:'https://buy.stripe.com/3cIfZi1A73jBeobfTu1ZS0g' },
   s3000:     { stripe:'https://buy.stripe.com/5kQ4gAfqX7zR6VJ8r21ZS0h' },
