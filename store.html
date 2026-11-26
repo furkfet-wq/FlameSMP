@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20261126d">
+<link rel="stylesheet" href="assets/site.css?v=20261126e">
 <style>
 
 /* ===== page ===== */
@@ -51,6 +51,7 @@
 .rart{position:relative;align-self:stretch;display:grid;place-items:center}
 .rart svg{width:118px;height:138px;overflow:visible;filter:drop-shadow(0 12px 14px rgba(0,0,0,.35)) drop-shadow(0 0 0 transparent);
   transition:filter .5s;animation:float 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
+.rank.big .rart svg{width:142px;height:166px} /* Flame Prestige badge: 20% bigger */
 .rank:hover .rart svg{filter:drop-shadow(0 12px 14px rgba(0,0,0,.35)) drop-shadow(0 0 14px color-mix(in srgb,var(--cg) 75%,transparent))}
 .rart .crest{transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
 .rank:hover .rart .crest{transform:translateY(-4px) scale(1.06)}
@@ -179,6 +180,9 @@
   .rank{grid-template-columns:1fr;gap:16px;padding-right:130px}
   .rart{position:absolute;right:14px;top:14px;width:100px;height:116px}
   .rart svg,.feat .rart svg{width:100px;height:116px}
+  .rank.big{padding-right:154px}
+  .rank.big .rart{width:120px;height:139px}
+  .rank.big .rart svg{width:120px;height:139px}
   .cards{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:520px){
@@ -186,6 +190,10 @@
   .rank{padding-right:24px}
   .rart{width:70px;height:82px;top:16px;right:12px}
   .rart svg,.feat .rart svg{width:70px;height:82px}
+  .rank.big{padding-right:24px}
+  .rank.big .rname{padding-right:86px} /* keep the name clear of the bigger badge */
+  .rank.big .rart{width:84px;height:98px}
+  .rank.big .rart svg{width:84px;height:98px}
   .perks{grid-template-columns:1fr}
   .cards{gap:14px}
   .card .art{width:100px;height:100px}
@@ -277,8 +285,8 @@
   </div>
 </div>
 
-<script src="assets/i18n.js?v=20261126d"></script>
-<script src="assets/site.js?v=20261126d"></script>
-<script src="assets/store.js?v=20261126d"></script>
+<script src="assets/i18n.js?v=20261126e"></script>
+<script src="assets/site.js?v=20261126e"></script>
+<script src="assets/store.js?v=20261126e"></script>
 </body>
 </html>

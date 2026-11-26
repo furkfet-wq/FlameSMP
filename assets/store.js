@@ -26,11 +26,11 @@ const RANKS = [
     perks:[['shard','sh',500],['home','pHomes',6],['gavel','pAuction',45],['box','pOrders',45],['flame','pTitle','Flame'],['globe','pRtp'],['chat','pRole'],['shield','pQueue']] },
   { id:'flameplus', name:'Flame+', price:10, monthly:true, crest:['#fff3b0','#ffb020'], tier:2,
     grad:'linear-gradient(100deg,#ffa257,#ff6a2b)', ink:'#2a0f04', glow:'rgba(255,106,43,.7)',
-    perks:[['shard','sh',1000],['home','pHomes',8],['gavel','pAuction',90],['box','pOrders',90],['lock','pVault',54],['flame','pTitle','Flame +'],['globe','pRtp'],['chat','pRole'],['shield','pQueue']] },
+    perks:[['shard','sh',1000],['home','pHomes',8],['gavel','pAuction',90],['box','pOrders',90],['lock','pVault',54],['flame','pTitle','Flame +'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
   { id:'flamepp', name:'Flame++', price:15, monthly:true, featured:true, crest:['#ffd6a0','#ff3b5c'], tier:3,
     grad:'linear-gradient(100deg,#ff5f38,#dc2458)', ink:'#ffffff', glow:'rgba(230,40,80,.75)',
     perks:[['shard','sh',2500],['home','pHomes',10],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame ++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
-  { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4,
+  { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4, big:true,
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
     perks:[['shard','sh',8000],['home','pHomes',15],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
 ];
@@ -117,7 +117,7 @@ function perkText(key, v){
 function renderProducts(first){
   // ranks and bundles share one banner layout; bundles: no 'lifetime' note, red % off tag, key crest
   const banner = (r, i, pre) => `
-    <div class="rank ${r.featured ? '' : 'rise'}" style="--grad:${r.grad};--ink:${r.ink};--glow:${r.glow};--d:${120 + i*80}ms">
+    <div class="rank ${r.featured ? '' : 'rise'}${r.big ? ' big' : ''}" style="--grad:${r.grad};--ink:${r.ink};--glow:${r.glow};--d:${120 + i*80}ms">
       ${r.featured ? '<span class="shine" aria-hidden="true"></span>' : ''}
       ${r.off ? `<span class="off-tag">${t('off', r.off)}</span>` : ''}
       <div>
