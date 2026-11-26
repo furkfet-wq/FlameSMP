@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20261120d">
+<link rel="stylesheet" href="assets/site.css?v=20261126a">
 <style>
 
 /* ===== page ===== */
@@ -62,6 +62,14 @@
 @keyframes bob{50%{transform:translateY(-3px) rotate(-3deg)}}
 @keyframes glint{from{transform:translateX(0)}to{transform:translateX(240px)}}
 @keyframes pip{45%{transform:scale(1.7)}}
+/* bundles: red % off tag in the top-left corner, key emblem turns like it's unlocking */
+.off-tag{position:absolute;top:-13px;left:-10px;z-index:2;padding:6px 13px;border-radius:999px;background:linear-gradient(135deg,#ff4d4d,#d90f2f);color:#fff;
+  font-weight:900;font-size:12.5px;letter-spacing:1px;white-space:nowrap;transform:rotate(-8deg);box-shadow:0 6px 18px rgba(220,20,50,.5),inset 0 -2px 0 rgba(0,0,0,.18);animation:offpop 2.6s ease-in-out infinite}
+@keyframes offpop{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(-8deg) scale(1.07)}}
+.rart .emb.key{transform-origin:50% 32%!important}
+.rank:hover .rart .emb.key{animation:turn 1.4s ease-in-out infinite}
+@keyframes turn{0%,100%{transform:rotate(0)}25%{transform:rotate(-22deg)}60%{transform:rotate(16deg) scale(1.04)}}
+@media (prefers-reduced-motion:reduce){.off-tag,.rank:hover .rart .emb.key{animation:none}}
 
 /* ===== best value: animated ring, shine and a bigger badge ===== */
 .feat{position:relative;margin:44px 0 34px;border-radius:24px;isolation:isolate;transition:transform .4s var(--ease)}
@@ -211,6 +219,8 @@
   <div class="wrap">
     <div class="sec-label rise" style="--d:80ms" data-i18n="ranks">Ranks</div>
     <div id="ranks"></div>
+    <div class="sec-label rise" data-i18n="bundles">Bundles</div>
+    <div id="bundles"></div>
     <div class="sec-label rise">Shards</div>
     <div class="cards" id="shards"></div>
     <div class="sec-label rise" data-i18n="keys">Crate Keys</div>
@@ -267,8 +277,8 @@
   </div>
 </div>
 
-<script src="assets/i18n.js?v=20261120d"></script>
-<script src="assets/site.js?v=20261120d"></script>
-<script src="assets/store.js?v=20261120d"></script>
+<script src="assets/i18n.js?v=20261126a"></script>
+<script src="assets/site.js?v=20261126a"></script>
+<script src="assets/store.js?v=20261126a"></script>
 </body>
 </html>

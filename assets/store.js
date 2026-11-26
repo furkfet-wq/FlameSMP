@@ -5,7 +5,8 @@ const PAY = {
   flame:     { stripe:'https://buy.stripe.com/28E9AUceLdYf0xlaza1ZS0x' },
   flameplus: { stripe:'https://buy.stripe.com/00wfZia6D5rJ4NBcHi1ZS0y' },
   flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z' },
-  custom:    { stripe:'https://buy.stripe.com/dRm6oI1A73jB1Bp22E1ZS0A' },
+  prestige:  { stripe:'https://buy.stripe.com/dRmcN6ceL3jB93RbDe1ZS0B' },
+  keybundle: { stripe:'https://buy.stripe.com/4gM7sM4Mjf2j5RF9v61ZS0C' },
   s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f' },
   s1250:     { stripe:'https://buy.stripe.com/3cIfZi1A73jBeobfTu1ZS0g' },
   s3000:     { stripe:'https://buy.stripe.com/5kQ4gAfqX7zR6VJ8r21ZS0h' },
@@ -29,9 +30,15 @@ const RANKS = [
   { id:'flamepp', name:'Flame++', price:15, monthly:true, featured:true, crest:['#ffd6a0','#ff3b5c'], tier:3,
     grad:'linear-gradient(100deg,#ff5f38,#dc2458)', ink:'#ffffff', glow:'rgba(230,40,80,.75)',
     perks:[['shard','sh',2500],['home','pHomes',10],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame ++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
-  { id:'custom', name:'Custom', price:50, monthly:false, crest:['#f3e1ff','#a855f7'], crown:true,
+  { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4,
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
-    perks:[['shard','sh',6000],['tag','pCName'],['palette','pCColour'],['chat','pCRole'],['palette','pRColour'],['home','pHomes',15]] }
+    perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Flame Prestige'],['globe','pRtp'],['zap','pChat'],['shield','pQueue']] }
+];
+/* bundles look like ranks; key = key art for the perk icon */
+const BUNDLES = [
+  { id:'keybundle', name:'Key Bundle', price:12.5, off:25, crest:['#d9ffe6','#22c55e'], key:true,
+    grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
+    perks:[['img/key-common.png','raw','2x Common Key'],['img/key-epic.png','raw','2x Epic Key'],['img/key-spawner.png','raw','2x Spawner Key'],['img/key-mythic.png','raw','2x Mythic Key'],['shard','sh',1250]] }
 ];
 const SHARDS = [
   { id:'s500',  amt:500,  price:5,  img:'img/shard-1.png' },
@@ -69,13 +76,19 @@ const gbp = n => '£' + (Number.isInteger(n) ? n : n.toFixed(2));
    RENDER
    ========================================================= */
 /* rank crest: shield with a flame (or crown) and tier pips */
-function crest(r, i){
-  const id = 'cr' + i;
-  const pips = r.crown ? '' : Array.from({ length: r.tier }, (_, k) => {
-    const x = 60 + (k - (r.tier - 1) / 2) * 18;
-    return `<path class="pip" style="--k:${k};transform-box:fill-box;transform-origin:center" d="M${x} 104l6 6-6 6-6-6z" fill="url(#${id}f)"/>`;
+function crest(r, i, pre = 'cr'){
+  const id = pre + i;
+  const pips = (r.crown || r.key) ? '' : Array.from({ length: r.tier }, (_, k) => {
+    // 4 pips sit a bit higher, smaller and closer so they stay inside the shield
+    const four = r.tier > 3, x = 60 + (k - (r.tier - 1) / 2) * (four ? 15 : 18), y = four ? 99 : 104, d = four ? 5 : 6;
+    return `<path class="pip" style="--k:${k};transform-box:fill-box;transform-origin:center" d="M${x} ${y}l${d} ${d}-${d} ${d}-${d}-${d}z" fill="url(#${id}f)"/>`;
   }).join('');
-  const emblem = r.crown
+  const emblem = r.key
+    ? `<circle cx="60" cy="44" r="17" fill="none" stroke="url(#${id}f)" stroke-width="9"/>
+       <path d="M55 60h10v40l-5 6-5-6z" fill="url(#${id}f)"/>
+       <path d="M65 76h10v7H65zM65 89h7v7h-7z" fill="url(#${id}f)"/>
+       <circle cx="60" cy="44" r="6" fill="#fff" opacity=".9"/>`
+    : r.crown
     ? `<path d="M30 92 34 48 48 64 60 36 72 64 86 48 90 92Z" fill="url(#${id}f)" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
        <circle cx="60" cy="36" r="4.5" fill="#fff"/><circle cx="34" cy="48" r="3.5" fill="#fff"/><circle cx="86" cy="48" r="3.5" fill="#fff"/>
        <rect x="30" y="94" width="60" height="9" rx="3" fill="url(#${id}f)"/>`
@@ -89,7 +102,7 @@ function crest(r, i){
     <g class="crest" style="transform-box:fill-box;transform-origin:center">
       <path d="M60 4 110 22V68c0 36-24 58-50 68C34 126 10 104 10 68V22Z" fill="url(#${id}s)" stroke="url(#${id}f)" stroke-width="5" stroke-linejoin="round"/>
       <path d="M60 15 100 29V68c0 30-20 48-40 57C40 116 20 98 20 68V29Z" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
-      <g class="emb${r.crown ? ' crown' : ''}" style="transform-box:fill-box;transform-origin:50% 100%">${emblem}</g>${pips}
+      <g class="emb${r.crown ? ' crown' : r.key ? ' key' : ''}" style="transform-box:fill-box;transform-origin:50% 100%">${emblem}</g>${pips}
       <g clip-path="url(#${id}c)"><g transform="skewX(-20)"><rect class="glint" x="-70" y="-10" width="36" height="160" fill="url(#${id}g)"/></g></g>
     </g></svg>`;
 }
@@ -102,24 +115,29 @@ function perkText(key, v){
 }
 
 function renderProducts(first){
-  $('ranks').innerHTML = RANKS.map((r,i) => {
-    const card = `
+  // ranks and bundles share one banner layout; bundles: no 'lifetime' note, red % off tag, key crest
+  const banner = (r, i, pre) => `
     <div class="rank ${r.featured ? '' : 'rise'}" style="--grad:${r.grad};--ink:${r.ink};--glow:${r.glow};--d:${120 + i*80}ms">
       ${r.featured ? '<span class="shine" aria-hidden="true"></span>' : ''}
+      ${r.off ? `<span class="off-tag">${t('off', r.off)}</span>` : ''}
       <div>
         <div class="rname"><img src="img/logo.png" alt="">${r.name}</div>
         <div class="rprice">${money(r.price)} ${t(r.monthly ? 'perMonth' : 'oneTime')}</div>
-        <div class="rnote">${t(r.monthly ? 'renews' : 'lifetime')}</div>
+        ${r.key ? '' : `<div class="rnote">${t(r.monthly ? 'renews' : 'lifetime')}</div>`}
         ${r.featured ? `<span class="save-chip">${t('mostShards')}</span>` : ''}
         <div class="ractions"><button class="rbuy" data-buy="${r.id}">${t(r.monthly ? 'subscribe' : 'buyNow')}</button></div>
       </div>
-      <ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>
-      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${crest(r, i)}</div>
+      <ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${ic.includes('/') ? `<img src="${ic}" alt="">` : svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>
+      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${crest(r, i, pre)}</div>
     </div>`;
+  $('ranks').innerHTML = RANKS.map((r,i) => {
+    const card = banner(r, i, 'cr');
     return r.featured
       ? `<div class="feat rise" style="--d:${120 + i*80}ms"><span class="best-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"/></svg>${t('best')}</span>${card}</div>`
       : card;
   }).join('');
+
+  $('bundles').innerHTML = BUNDLES.map((b,i) => banner(b, i, 'cb')).join('');
 
   const base = SHARDS[0].amt / SHARDS[0].price;
   $('shards').innerHTML = SHARDS.map((s,i) => {
@@ -145,7 +163,7 @@ function renderProducts(first){
     </div>`).join('');
 
   // after a currency switch, update in place without replaying the entrance animation
-  if (!first) ['ranks','shards','keys'].forEach(id => $(id).querySelectorAll('.rise').forEach(el => el.classList.remove('rise')));
+  if (!first) ['ranks','bundles','shards','keys'].forEach(id => $(id).querySelectorAll('.rise').forEach(el => el.classList.remove('rise')));
 }
 renderProducts(true);
 window.onCurrencyChange = () => { renderProducts(false); if ($('checkout').classList.contains('open') && current) fillCheckout(current); };
@@ -235,6 +253,8 @@ let current = null;
 function product(id){
   const r = RANKS.find(x => x.id === id);
   if (r) return { title: r.name, gbp: r.price, per: t(r.monthly ? 'perMonth' : 'oneTime'), img: 'img/logo.png', cover: true, note: t(r.monthly ? 'noteM' : 'noteO') };
+  const b = BUNDLES.find(x => x.id === id);
+  if (b) return { title: b.name, gbp: b.price, per: t('oneTime'), img: 'img/key-mythic.png', note: t('noteO') };
   const s = SHARDS.find(x => x.id === id);
   if (s) return { title: fmtN(s.amt) + ' Shards', gbp: s.price, per: t('oneTime'), img: s.img, note: t('noteO') };
   const k = KEYS.find(x => x.id === id);
