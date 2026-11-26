@@ -78,34 +78,19 @@ const gbp = n => '£' + (Number.isInteger(n) ? n : n.toFixed(2));
 /* rank crest: shield with a flame (or crown) and tier pips */
 function crest(r, i, pre = 'cr'){
   const id = pre + i;
-  const pips = (r.crown || r.key) ? '' : Array.from({ length: r.tier }, (_, k) => {
+  const pips = r.crown ? '' : Array.from({ length: r.tier }, (_, k) => {
     // 4 pips sit a bit higher, smaller and closer so they stay inside the shield
     const four = r.tier > 3, x = 60 + (k - (r.tier - 1) / 2) * (four ? 15 : 18), y = four ? 99 : 104, d = four ? 5 : 6;
     return `<path class="pip" style="--k:${k};transform-box:fill-box;transform-origin:center" d="M${x} ${y}l${d} ${d}-${d} ${d}-${d}-${d}z" fill="url(#${id}f)"/>`;
   }).join('');
-  // bundle crest: one symmetric red key above a keyhole; on hover it pushes in, turns, and sparks burst out
-  const keyDefs = r.key ? `<linearGradient id="${id}k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fecdd3"/><stop offset=".45" stop-color="#fb7185"/><stop offset="1" stop-color="#e11d48"/></linearGradient><radialGradient id="${id}h"><stop offset="0" stop-color="#ffe4e6"/><stop offset=".4" stop-color="#fb7185" stop-opacity=".8"/><stop offset="1" stop-color="#e11d48" stop-opacity="0"/></radialGradient>` : '';
-  const emblem = r.key
-    ? `<g class="kh"><circle cx="60" cy="111" r="4.5" fill="#050202"/><path d="M57.5 113h5l1.5 9h-8z" fill="#050202"/>
-         <circle class="khg" cx="60" cy="113" r="12" fill="url(#${id}h)" opacity="0"/></g>
-       <g class="ray" stroke="#fecdd3" stroke-width="2.4" stroke-linecap="round">${Array.from({ length: 8 }, (_, k) => {
-         const a = k * Math.PI / 4, c = Math.cos(a), sn = Math.sin(a);
-         return `<path d="M${(60 + c * 12).toFixed(1)} ${(114 + sn * 12).toFixed(1)}L${(60 + c * 17).toFixed(1)} ${(114 + sn * 17).toFixed(1)}"/>`;
-       }).join('')}</g>
-       <g class="rk" style="transform-box:fill-box;transform-origin:50% 100%">
-         <circle cx="60" cy="40" r="13" fill="none" stroke="url(#${id}k)" stroke-width="7"/>
-         <circle cx="60" cy="40" r="4" fill="#fff" opacity=".85"/>
-         <rect x="56" y="52" width="8" height="48" rx="2" fill="url(#${id}k)"/>
-         <rect x="48" y="78" width="24" height="6" rx="1.5" fill="url(#${id}k)"/>
-         <rect x="51" y="89" width="18" height="6" rx="1.5" fill="url(#${id}k)"/>
-         <rect x="57.5" y="55" width="2" height="42" rx="1" fill="#fff" opacity=".35"/></g>`
-    : r.crown
+  const emblem = r.crown
+
     ? `<path d="M30 92 34 48 48 64 60 36 72 64 86 48 90 92Z" fill="url(#${id}f)" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
        <circle cx="60" cy="36" r="4.5" fill="#fff"/><circle cx="34" cy="48" r="3.5" fill="#fff"/><circle cx="86" cy="48" r="3.5" fill="#fff"/>
        <rect x="30" y="94" width="60" height="9" rx="3" fill="url(#${id}f)"/>`
     : `<path d="M60 24c12 12 22 22 22 38a22 22 0 0 1-44 0c0-10 6-17 11-21 0 8 4 13 8 13 0-14 3-22 3-30z" fill="url(#${id}f)"/>
        <path d="M60 58c5 5 9 9 9 15a9 9 0 0 1-18 0c0-4 2-7 4-8 0 3 2 5 3 5 0-5 2-8 2-12z" fill="#fff" opacity=".9"/>`;
-  return `<svg viewBox="0 0 120 140"><defs>${keyDefs}
+  return `<svg viewBox="0 0 120 140"><defs>
       <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1a15"/><stop offset="1" stop-color="#110908"/></linearGradient>
       <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${r.crest[1]}"/><stop offset="1" stop-color="${r.crest[0]}"/></linearGradient>
       <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
@@ -113,8 +98,31 @@ function crest(r, i, pre = 'cr'){
     <g class="crest" style="transform-box:fill-box;transform-origin:center">
       <path d="M60 4 110 22V68c0 36-24 58-50 68C34 126 10 104 10 68V22Z" fill="url(#${id}s)" stroke="url(#${id}f)" stroke-width="5" stroke-linejoin="round"/>
       <path d="M60 15 100 29V68c0 30-20 48-40 57C40 116 20 98 20 68V29Z" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
-      <g class="emb${r.crown ? ' crown' : r.key ? ' key' : ''}" style="transform-box:fill-box;transform-origin:50% 100%">${emblem}</g>${pips}
+      <g class="emb${r.crown ? ' crown' : ''}" style="transform-box:fill-box;transform-origin:50% 100%">${emblem}</g>${pips}
       <g clip-path="url(#${id}c)"><g transform="skewX(-20)"><rect class="glint" x="-70" y="-10" width="36" height="160" fill="url(#${id}g)"/></g></g>
+    </g></svg>`;
+}
+
+/* bundle art: a loot crate (not a shield, so bundles never look like ranks).
+   On hover the lid pops open, light beams shine out and sparkles rise. */
+function crate(r, i){
+  const id = 'cb' + i;
+  const sparks = [[44,62,0],[60,54,1],[76,62,2],[52,58,3],[68,58,4]].map(([x, y, k]) =>
+    `<path class="spk" style="--k:${k}" d="M${x} ${y - 4}l3 4-3 4-3-4z" fill="#fff6c2"/>`).join('');
+  return `<svg viewBox="0 0 120 140"><defs>
+      <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1a15"/><stop offset="1" stop-color="#110908"/></linearGradient>
+      <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${r.crest[1]}"/><stop offset="1" stop-color="${r.crest[0]}"/></linearGradient>
+      <linearGradient id="${id}b" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff3b0" stop-opacity=".9"/><stop offset="1" stop-color="#fff3b0" stop-opacity="0"/></linearGradient></defs>
+    <g class="crate" style="transform-box:fill-box;transform-origin:50% 100%">
+      <path class="beam" d="M30 74 8 6H112L90 74Z" fill="url(#${id}b)"/>${sparks}
+      <rect x="20" y="74" width="80" height="56" rx="7" fill="url(#${id}s)" stroke="url(#${id}f)" stroke-width="5"/>
+      <rect x="26" y="80" width="68" height="44" rx="4" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+      <rect x="53" y="76" width="14" height="52" fill="url(#${id}f)"/>
+      <g class="lid" style="transform-box:fill-box;transform-origin:8% 100%">
+        <rect x="14" y="56" width="92" height="20" rx="6" fill="url(#${id}s)" stroke="url(#${id}f)" stroke-width="5"/>
+        <rect x="53" y="58" width="14" height="16" fill="url(#${id}f)"/>
+        <path d="M60 56C50 40 36 44 42 52 46 57 56 57 60 56ZM60 56C70 40 84 44 78 52 74 57 64 57 60 56Z" fill="url(#${id}f)" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>
+        <circle cx="60" cy="55" r="5" fill="${r.crest[0]}"/></g>
     </g></svg>`;
 }
 
@@ -139,7 +147,7 @@ function renderProducts(first){
         <div class="ractions"><button class="rbuy" data-buy="${r.id}">${t(r.monthly ? 'subscribe' : 'buyNow')}</button></div>
       </div>
       <ul class="perks">${r.perks.map(([ic, key, v]) => `<li><span class="ic">${ic.includes('/') ? `<img src="${ic}" alt="">` : svg(ic === 'shard' ? 'gem' : ic)}</span>${perkText(key, v)}</li>`).join('')}</ul>
-      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${crest(r, i, pre)}</div>
+      <div class="rart" aria-hidden="true" style="--fd:-${i*1.5}s;--cg:${r.crest[1]}">${r.key ? crate(r, i) : crest(r, i, pre)}</div>
     </div>`;
   $('ranks').innerHTML = RANKS.map((r,i) => {
     const card = banner(r, i, 'cr');
