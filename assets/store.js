@@ -83,18 +83,28 @@ function crest(r, i, pre = 'cr'){
     const four = r.tier > 3, x = 60 + (k - (r.tier - 1) / 2) * (four ? 15 : 18), y = four ? 99 : 104, d = four ? 5 : 6;
     return `<path class="pip" style="--k:${k};transform-box:fill-box;transform-origin:center" d="M${x} ${y}l${d} ${d}-${d} ${d}-${d}-${d}z" fill="url(#${id}f)"/>`;
   }).join('');
+  // bundle crest: a shard on top, three symmetric keys (green, yellow, red) side by side below it
+  const KEYC = [['#bbf7d0','#16a34a'],['#fef08a','#f59e0b'],['#fecdd3','#e11d48']];
+  const keyArt = (c, k, dx, tilt) => `<g transform="translate(${dx} 0) rotate(${tilt} 60 80)"><g class="kk" style="--k:${k};transform-box:fill-box;transform-origin:50% 100%">
+       <circle cx="60" cy="62" r="8" fill="none" stroke="url(#${id}k${k})" stroke-width="5"/>
+       <rect x="57.5" y="69" width="5" height="33" rx="1.5" fill="url(#${id}k${k})"/>
+       <rect x="52" y="87" width="16" height="4.5" rx="1" fill="url(#${id}k${k})"/>
+       <rect x="54" y="95" width="12" height="4.5" rx="1" fill="url(#${id}k${k})"/></g></g>`;
+  const keyDefs = r.key ? KEYC.map(([a, b], k) =>
+    `<linearGradient id="${id}k${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`).join('') : '';
   const emblem = r.key
-    ? `<circle cx="60" cy="44" r="17" fill="none" stroke="url(#${id}f)" stroke-width="9"/>
-       <path d="M55 60h10v40l-5 6-5-6z" fill="url(#${id}f)"/>
-       <path d="M65 76h10v7H65zM65 89h7v7h-7z" fill="url(#${id}f)"/>
-       <circle cx="60" cy="44" r="6" fill="#fff" opacity=".9"/>`
+    ? `<linearGradient id="${id}gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d9ff"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+       ${keyArt(KEYC[0], 0, -23, -8)}${keyArt(KEYC[1], 1, 0, 0)}${keyArt(KEYC[2], 2, 23, 8)}
+       <g class="gm" style="transform-box:fill-box;transform-origin:center">
+         <path d="M49 30 54 23H66L71 30 60 45Z" fill="url(#${id}gm)"/>
+         <path d="M49 30H71M60 45 55 30 58 23M60 45 65 30 62 23" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.2" stroke-linejoin="round"/></g>`
     : r.crown
     ? `<path d="M30 92 34 48 48 64 60 36 72 64 86 48 90 92Z" fill="url(#${id}f)" stroke="#fff" stroke-opacity=".45" stroke-width="2" stroke-linejoin="round"/>
        <circle cx="60" cy="36" r="4.5" fill="#fff"/><circle cx="34" cy="48" r="3.5" fill="#fff"/><circle cx="86" cy="48" r="3.5" fill="#fff"/>
        <rect x="30" y="94" width="60" height="9" rx="3" fill="url(#${id}f)"/>`
     : `<path d="M60 24c12 12 22 22 22 38a22 22 0 0 1-44 0c0-10 6-17 11-21 0 8 4 13 8 13 0-14 3-22 3-30z" fill="url(#${id}f)"/>
        <path d="M60 58c5 5 9 9 9 15a9 9 0 0 1-18 0c0-4 2-7 4-8 0 3 2 5 3 5 0-5 2-8 2-12z" fill="#fff" opacity=".9"/>`;
-  return `<svg viewBox="0 0 120 140"><defs>
+  return `<svg viewBox="0 0 120 140"><defs>${keyDefs}
       <linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c1a15"/><stop offset="1" stop-color="#110908"/></linearGradient>
       <linearGradient id="${id}f" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${r.crest[1]}"/><stop offset="1" stop-color="${r.crest[0]}"/></linearGradient>
       <linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
