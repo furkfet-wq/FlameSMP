@@ -36,7 +36,7 @@ const RANKS = [
 ];
 /* bundles look like ranks; key = key art for the perk icon */
 const BUNDLES = [
-  { id:'keybundle', name:'Key Bundle', price:12.5, off:25, crest:['#d9ffe6','#22c55e'], key:true,
+  { id:'keybundle', name:'Key Bundle', price:22.5, off:16, crest:['#d9ffe6','#22c55e'], key:true,
     grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
     perks:[['img/key-common.png','raw','2x Common Key'],['img/key-epic.png','raw','2x Epic Key'],['img/key-spawner.png','raw','2x Spawner Key'],['img/key-mythic.png','raw','2x Mythic Key'],['shard','sh',1250]] }
 ];
