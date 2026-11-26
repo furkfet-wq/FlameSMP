@@ -40,7 +40,7 @@ const BUNDLES = [
   { id:'keybundle', name:'Key Bundle', price:22.5, off:16, crest:['#d9ffe6','#22c55e'], key:true,
     grad:'linear-gradient(100deg,#5ee39a,#16a34a)', ink:'#062a12', glow:'rgba(34,197,94,.7)',
     loot:[['img/key-common.webp','2x','Common Key'],['img/key-epic.webp','2x','Epic Key'],['img/key-spawner.webp','2x','Spawner Key'],['img/key-mythic.webp','2x','Mythic Key'],['img/shard-2.webp',1250,'Shards']] },
-  { id:'enhancedbundle', name:'Enhanced Bundle', price:45, off:21, crest:['#fff3b0','#f59e0b'], key:true, big:true,
+  { id:'enhancedbundle', name:'Enhanced Bundle', price:42, off:21, crest:['#fff3b0','#f59e0b'], key:true, big:true,
     grad:'linear-gradient(100deg,#ffd36b,#f5a524)', ink:'#2a1600', glow:'rgba(245,165,36,.7)',
     loot:[['img/key-common.webp','4x','Common Key'],['img/key-epic.webp','4x','Epic Key'],['img/key-spawner.webp','4x','Spawner Key'],['img/key-mythic.webp','4x','Mythic Key'],['img/shard-3.webp',3000,'Shards']] }
 ];
