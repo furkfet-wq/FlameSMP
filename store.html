@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20261126o">
+<link rel="stylesheet" href="assets/site.css?v=20261126p">
 <style>
 
 /* ===== page ===== */
@@ -80,10 +80,10 @@
 .rart .beam,.rart .spk{opacity:0;transition:opacity .4s}
 .rank:hover .rart .lid{transform:translate(-4px,-12px) rotate(-14deg)}
 .rank:hover .rart .beam{opacity:1;animation:beam 1.8s ease-in-out .3s infinite}
-.rank:hover .rart .spk{animation:rise 1.8s ease-out calc(.3s + var(--k) * .3s) infinite}
+.rank:hover .rart .spk{animation:sparkrise 1.8s ease-out calc(.3s + var(--k) * .3s) infinite}
 .rank:hover .rart .crate{animation:hop .5s ease-out}
 @keyframes beam{50%{opacity:.6}}
-@keyframes rise{0%{opacity:0;transform:translateY(8px)}25%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
+@keyframes sparkrise{0%{opacity:0;transform:translateY(8px)}25%{opacity:1}100%{opacity:0;transform:translateY(-34px)}}
 @keyframes hop{40%{transform:scale(1.05,.94)}70%{transform:scale(.97,1.04)}}
 @media (prefers-reduced-motion:reduce){.loot img{animation:none}.loot li{transition:none}.off-tag,.rank:hover .rart .beam,.rank:hover .rart .spk,.rank:hover .rart .crate{animation:none}.rart .lid{transition:none}}
 
@@ -303,8 +303,8 @@
   </div>
 </div>
 
-<script src="assets/i18n.js?v=20261126o"></script>
-<script src="assets/site.js?v=20261126o"></script>
-<script src="assets/store.js?v=20261126o"></script>
+<script src="assets/i18n.js?v=20261126p"></script>
+<script src="assets/site.js?v=20261126p"></script>
+<script src="assets/store.js?v=20261126p"></script>
 </body>
 </html>
