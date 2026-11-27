@@ -6,21 +6,24 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flame SMP Store | Ranks, Shards &amp; Crate Keys</title>
-<meta name="description" content="Official Flame SMP store: buy Minecraft ranks, shards and crate keys for the Flame SMP server. Pay by card.">
+<meta name="description" content="Official Flame SMP store: monthly Minecraft ranks, shard packs, crate keys and bundles for the Flame SMP Java and Bedrock server, delivered in game. Pay by card.">
 <link rel="canonical" href="https://flamesmp-store.com/store.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Flame SMP">
 <meta property="og:title" content="Flame SMP Store | Ranks, Shards &amp; Crate Keys">
-<meta property="og:description" content="Ranks, shards and crate keys for the Flame SMP Minecraft server. Pay by card.">
+<meta property="og:description" content="Monthly ranks, shard packs, crate keys and bundles for the Flame SMP Minecraft server (Java and Bedrock), delivered straight to your account in game.">
 <meta property="og:url" content="https://flamesmp-store.com/store.html">
-<meta property="og:image" content="https://flamesmp-store.com/img/banner.jpg">
+<meta property="og:image" content="https://flamesmp-store.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Flame SMP logo over a pixel-art lava cave with castles">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#141414">
 <link rel="icon" href="img/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20261127b">
+<link rel="stylesheet" href="assets/site.css?v=20261127c">
 <style>
 
 /* ===== page ===== */
@@ -214,7 +217,7 @@ body:has(.sale) .tb-cta{min-width:0;overflow:hidden}
 .co .mbox{width:min(540px,100%)}
 .co .mhead{padding:24px 26px}
 .co .mhead .ic{width:64px;height:64px;border-radius:14px;background:#262626}
-.co .mhead h3{font-size:23px}
+.co .mhead .mtitle{font-size:23px}
 .co .kick{font-size:12.5px}
 .co .mbody{padding:24px 26px 26px}
 .playing{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:14px;background:#171717;border:1px solid #2a2a2a;margin-bottom:18px}
@@ -291,13 +294,13 @@ body:has(.sale) .tb-cta{min-width:0;overflow:hidden}
     <p data-i18n="storeSub">Ranks, shards and crate keys for Flame SMP.</p>
   </div>
   <div class="wrap">
-    <div class="sec-label rise" style="--d:80ms" data-i18n="ranks">Ranks</div>
+    <h2 class="sec-label rise" style="--d:80ms" data-i18n="ranks">Ranks</h2>
     <div id="ranks"></div>
-    <div class="sec-label rise" data-i18n="bundles">Bundles</div>
+    <h2 class="sec-label rise" data-i18n="bundles">Bundles</h2>
     <div id="bundles"></div>
-    <div class="sec-label rise">Shards</div>
+    <h2 class="sec-label rise">Shards</h2>
     <div class="cards" id="shards"></div>
-    <div class="sec-label rise" data-i18n="keys">Crate Keys</div>
+    <h2 class="sec-label rise" data-i18n="keys">Crate Keys</h2>
     <div class="cards" id="keys"></div>
   </div>
   <footer id="footer"></footer>
@@ -308,7 +311,7 @@ body:has(.sale) .tb-cta{min-width:0;overflow:hidden}
   <button class="mclose id-close" id="idClose" aria-label="Close"></button>
   <div>
     <div class="id-kick" data-i18n="welcome">Welcome to Flame SMP</div>
-    <h2 class="id-title" id="idTitle"><span class="l1" data-i18n="id1">IDENTIFY</span><span class="l2" data-i18n="id2">YOURSELF</span></h2>
+    <div class="id-title" id="idTitle"><span class="l1" data-i18n="id1">IDENTIFY</span><span class="l2" data-i18n="id2">YOURSELF</span></div>
     <form class="id-form" id="idForm" autocomplete="off" novalidate>
       <label class="id-label" for="idInput" data-i18n="yourName">Your Minecraft username</label>
       <div class="id-field" id="idField">
@@ -332,7 +335,7 @@ body:has(.sale) .tb-cta{min-width:0;overflow:hidden}
   <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="coTitle">
     <div class="mhead">
       <div class="ic"><img id="coImg" class="contain" alt=""></div>
-      <div><h3 id="coTitle"></h3><div class="kick" id="coPrice"></div></div>
+      <div><div class="mtitle" id="coTitle"></div><div class="kick" id="coPrice"></div></div>
       <button class="mclose" id="coClose" aria-label="Close"></button>
     </div>
     <div class="mbody">
@@ -351,8 +354,8 @@ body:has(.sale) .tb-cta{min-width:0;overflow:hidden}
   </div>
 </div>
 
-<script src="assets/i18n.js?v=20261127b"></script>
-<script src="assets/site.js?v=20261127b"></script>
-<script src="assets/store.js?v=20261127b"></script>
+<script src="assets/i18n.js?v=20261127c"></script>
+<script src="assets/site.js?v=20261127c"></script>
+<script src="assets/store.js?v=20261127c"></script>
 </body>
 </html>

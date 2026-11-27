@@ -293,7 +293,7 @@ function buildLegal(){
     <div class="mbox" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
       <div class="mhead">
         <div class="ic"><img src="img/logo.webp" alt=""></div>
-        <div><h3 id="legalTitle"></h3><div class="kick">Flame SMP Store</div></div>
+        <div><div class="mtitle" id="legalTitle"></div><div class="kick">Flame SMP Store</div></div>
         <button class="mclose" aria-label="Close">${ICONS.close}</button>
       </div>
       <div class="mbody" id="legalBody"></div>

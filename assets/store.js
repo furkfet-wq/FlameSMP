@@ -144,7 +144,7 @@ function renderProducts(first){
       ${r.featured ? '<span class="shine" aria-hidden="true"></span>' : ''}
       ${r.off ? `<span class="off-tag">${t('off', r.off)}</span>` : ''}
       <div>
-        <div class="rname"><img src="img/logo.webp" alt="">${r.name}</div>
+        <h3 class="rname"><img src="img/logo.webp" alt="">${r.name}</h3>
         <div class="rprice">${money(r.price)} ${t(r.monthly ? 'perMonth' : 'oneTime')}</div>
         ${r.key ? '' : `<div class="rnote">${t(r.monthly ? 'renews' : 'lifetime')}</div>`}
         ${r.featured ? `<span class="save-chip">${t('mostShards')}</span>` : ''}
@@ -170,7 +170,7 @@ function renderProducts(first){
     return `<div class="card rise ${s.best ? 'pop' : ''}" style="--c:${s.best ? '#ff7a1f' : '#c084fc'};--ink:#1d0b00;--d:${i*70}ms">
       ${s.best ? `<span class="badge">${t('best')}</span>` : ''}
       <div class="art"><img src="${s.img}" alt="" loading="lazy" decoding="async" style="--fd:-${i*1.3}s"></div>
-      <div class="nm" style="color:#c084fc">${fmtN(s.amt)} Shards</div>
+      <h3 class="nm" style="color:#c084fc">${fmtN(s.amt)} Shards</h3>
       <div class="pr">${money(s.price)}</div>
       <span class="chip ${bonus > 0 ? '' : 'none'}">${bonus > 0 ? t('bonus', bonus) : t('starter')}</span>
       <button class="cbuy" data-buy="${s.id}" style="${s.best ? '' : '--c:#a855f7;--ink:#fff'}">${svg('cart')} ${t('buyNow')}</button>
@@ -181,7 +181,7 @@ function renderProducts(first){
     <div class="card rise ${k.popular ? 'pop' : ''}" style="--c:${k.c};--ink:${k.ink};--d:${i*70}ms">
       ${k.popular ? `<span class="badge">${t('popular')}</span>` : ''}
       <div class="art"><img src="${k.img}" alt="" loading="lazy" decoding="async" style="--fd:-${i*1.4}s"></div>
-      <div class="nm">${k.name}</div>
+      <h3 class="nm">${k.name}</h3>
       <div class="pr">${money(k.price)}</div>
       <div class="per">${t('perKey')}</div>
       <button class="cbuy" data-buy="${k.id}">${svg('cart')} ${t('buyNow')}</button>
