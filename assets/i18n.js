@@ -57,7 +57,7 @@ en:{
   t3:"Media", d3:"Apply for content creator perks after meeting the requirements.", t4:"Player Report", d4:"Report another player for breaking the rules.",
   t5:"Bug Report", d5:"Report a bug or issue you ran into on the server.", t6:"Connection Issues", d6:"Get help connecting to the server.",
   useDc:"Use Discord to get our helpful support!", openDc:"Open Discord", enOnly:"This policy is available in English only.",
-  lang:"Language", cur:"Currency", search:"Search"
+  lang:"Language", cur:"Currency", search:"Search", vat:"+ VAT"
 },
 es:{
   home:"Inicio", store:"Tienda", support:"Soporte", login:"Iniciar sesión", copied:"Copiado", notAssoc:"No asociado con Mojang ni Microsoft",
@@ -80,7 +80,7 @@ es:{
   t3:"Media", d3:"Solicita ventajas de creador de contenido tras cumplir los requisitos.", t4:"Reportar jugador", d4:"Reporta a otro jugador por romper las reglas.",
   t5:"Reportar error", d5:"Reporta un error o problema que encontraste en el servidor.", t6:"Problemas de conexión", d6:"Obtén ayuda para conectarte al servidor.",
   useDc:"¡Usa Discord para recibir nuestra ayuda!", openDc:"Abrir Discord", enOnly:"Esta política solo está disponible en inglés.",
-  lang:"Idioma", cur:"Moneda", search:"Buscar"
+  lang:"Idioma", cur:"Moneda", search:"Buscar", vat:"+ IVA"
 },
 pt:{
   home:"Início", store:"Loja", support:"Suporte", login:"Entrar", copied:"Copiado", notAssoc:"Não associado à Mojang ou à Microsoft",
@@ -103,7 +103,7 @@ pt:{
   t3:"Mídia", d3:"Candidate-se às vantagens de criador de conteúdo após cumprir os requisitos.", t4:"Denunciar jogador", d4:"Denuncie outro jogador por quebrar as regras.",
   t5:"Reportar bug", d5:"Reporte um bug ou problema que você encontrou no servidor.", t6:"Problemas de conexão", d6:"Receba ajuda para se conectar ao servidor.",
   useDc:"Use o Discord para receber nosso suporte!", openDc:"Abrir Discord", enOnly:"Esta política está disponível apenas em inglês.",
-  lang:"Idioma", cur:"Moeda", search:"Pesquisar"
+  lang:"Idioma", cur:"Moeda", search:"Pesquisar", vat:"+ impostos"
 },
 fr:{
   home:"Accueil", store:"Boutique", support:"Support", login:"Connexion", copied:"Copié", notAssoc:"Non affilié à Mojang ou Microsoft",
@@ -126,7 +126,7 @@ fr:{
   t3:"Médias", d3:"Postule aux avantages créateur de contenu après avoir rempli les conditions.", t4:"Signaler un joueur", d4:"Signale un joueur qui enfreint les règles.",
   t5:"Signaler un bug", d5:"Signale un bug ou un problème rencontré sur le serveur.", t6:"Problèmes de connexion", d6:"Obtiens de l'aide pour te connecter au serveur.",
   useDc:"Utilise Discord pour obtenir notre aide !", openDc:"Ouvrir Discord", enOnly:"Cette politique est disponible uniquement en anglais.",
-  lang:"Langue", cur:"Devise", search:"Rechercher"
+  lang:"Langue", cur:"Devise", search:"Rechercher", vat:"+ TVA"
 },
 de:{
   home:"Start", store:"Shop", support:"Support", login:"Anmelden", copied:"Kopiert", notAssoc:"Nicht mit Mojang oder Microsoft verbunden",
@@ -149,7 +149,7 @@ de:{
   t3:"Medien", d3:"Bewirb dich für Creator-Vorteile, wenn du die Anforderungen erfüllst.", t4:"Spieler melden", d4:"Melde einen Spieler, der gegen die Regeln verstößt.",
   t5:"Bug melden", d5:"Melde einen Bug oder ein Problem auf dem Server.", t6:"Verbindungsprobleme", d6:"Hilfe beim Verbinden mit dem Server.",
   useDc:"Nutze Discord für unseren Support!", openDc:"Discord öffnen", enOnly:"Diese Richtlinie ist nur auf Englisch verfügbar.",
-  lang:"Sprache", cur:"Währung", search:"Suchen"
+  lang:"Sprache", cur:"Währung", search:"Suchen", vat:"zzgl. MwSt."
 },
 it:{
   home:"Home", store:"Negozio", support:"Supporto", login:"Accedi", copied:"Copiato", notAssoc:"Non affiliato a Mojang o Microsoft",
@@ -172,7 +172,7 @@ it:{
   t3:"Media", d3:"Candidati ai vantaggi per creator dopo aver soddisfatto i requisiti.", t4:"Segnala giocatore", d4:"Segnala un giocatore che infrange le regole.",
   t5:"Segnala bug", d5:"Segnala un bug o un problema riscontrato sul server.", t6:"Problemi di connessione", d6:"Ottieni aiuto per connetterti al server.",
   useDc:"Usa Discord per ricevere il nostro supporto!", openDc:"Apri Discord", enOnly:"Questa informativa è disponibile solo in inglese.",
-  lang:"Lingua", cur:"Valuta", search:"Cerca"
+  lang:"Lingua", cur:"Valuta", search:"Cerca", vat:"+ IVA"
 },
 nl:{
   home:"Home", store:"Winkel", support:"Support", login:"Inloggen", copied:"Gekopieerd", notAssoc:"Niet verbonden aan Mojang of Microsoft",
@@ -195,7 +195,7 @@ nl:{
   t3:"Media", d3:"Vraag creator-voordelen aan als je aan de eisen voldoet.", t4:"Speler melden", d4:"Meld een speler die de regels breekt.",
   t5:"Bug melden", d5:"Meld een bug of probleem op de server.", t6:"Verbindingsproblemen", d6:"Krijg hulp bij het verbinden met de server.",
   useDc:"Gebruik Discord voor onze hulp!", openDc:"Discord openen", enOnly:"Dit beleid is alleen in het Engels beschikbaar.",
-  lang:"Taal", cur:"Valuta", search:"Zoeken"
+  lang:"Taal", cur:"Valuta", search:"Zoeken", vat:"excl. btw"
 },
 pl:{
   home:"Start", store:"Sklep", support:"Pomoc", login:"Zaloguj", copied:"Skopiowano", notAssoc:"Niepowiązane z Mojang ani Microsoft",
@@ -218,7 +218,7 @@ pl:{
   t3:"Media", d3:"Złóż wniosek o korzyści twórcy po spełnieniu wymagań.", t4:"Zgłoś gracza", d4:"Zgłoś gracza, który łamie zasady.",
   t5:"Zgłoś błąd", d5:"Zgłoś błąd lub problem na serwerze.", t6:"Problemy z połączeniem", d6:"Uzyskaj pomoc z połączeniem z serwerem.",
   useDc:"Skorzystaj z Discorda, aby uzyskać pomoc!", openDc:"Otwórz Discord", enOnly:"Ta polityka jest dostępna tylko po angielsku.",
-  lang:"Język", cur:"Waluta", search:"Szukaj"
+  lang:"Język", cur:"Waluta", search:"Szukaj", vat:"+ VAT"
 },
 tr:{
   home:"Ana Sayfa", store:"Mağaza", support:"Destek", login:"Giriş", copied:"Kopyalandı", notAssoc:"Mojang veya Microsoft ile bağlantılı değildir",
@@ -241,7 +241,7 @@ tr:{
   t3:"Medya", d3:"Şartları karşıladıktan sonra içerik üretici ayrıcalıklarına başvur.", t4:"Oyuncu Şikayeti", d4:"Kuralları çiğneyen bir oyuncuyu bildir.",
   t5:"Hata Bildirimi", d5:"Sunucuda karşılaştığın bir hatayı veya sorunu bildir.", t6:"Bağlantı Sorunları", d6:"Sunucuya bağlanmak için yardım al.",
   useDc:"Yardım almak için Discord'u kullan!", openDc:"Discord'u aç", enOnly:"Bu politika yalnızca İngilizce olarak mevcuttur.",
-  lang:"Dil", cur:"Para birimi", search:"Ara"
+  lang:"Dil", cur:"Para birimi", search:"Ara", vat:"+ KDV"
 },
 ru:{
   home:"Главная", store:"Магазин", support:"Поддержка", login:"Войти", copied:"Скопировано", notAssoc:"Не связано с Mojang или Microsoft",
@@ -264,7 +264,7 @@ ru:{
   t3:"Медиа", d3:"Подай заявку на бонусы для авторов контента, если выполняешь требования.", t4:"Жалоба на игрока", d4:"Пожалуйся на игрока, нарушающего правила.",
   t5:"Сообщить о баге", d5:"Сообщи о баге или проблеме на сервере.", t6:"Проблемы с подключением", d6:"Помощь с подключением к серверу.",
   useDc:"Пиши в Discord, и мы поможем!", openDc:"Открыть Discord", enOnly:"Эта политика доступна только на английском.",
-  lang:"Язык", cur:"Валюта", search:"Поиск"
+  lang:"Язык", cur:"Валюта", search:"Поиск", vat:"+ НДС"
 },
 uk:{
   home:"Головна", store:"Магазин", support:"Підтримка", login:"Увійти", copied:"Скопійовано", notAssoc:"Не пов'язано з Mojang чи Microsoft",
@@ -287,7 +287,7 @@ uk:{
   t3:"Медіа", d3:"Подай заявку на бонуси для авторів контенту, якщо виконуєш вимоги.", t4:"Скарга на гравця", d4:"Поскаржся на гравця, який порушує правила.",
   t5:"Повідомити про баг", d5:"Повідом про баг або проблему на сервері.", t6:"Проблеми з підключенням", d6:"Допомога з підключенням до сервера.",
   useDc:"Пиши в Discord, і ми допоможемо!", openDc:"Відкрити Discord", enOnly:"Ця політика доступна лише англійською.",
-  lang:"Мова", cur:"Валюта", search:"Пошук"
+  lang:"Мова", cur:"Валюта", search:"Пошук", vat:"+ ПДВ"
 },
 cs:{
   home:"Domů", store:"Obchod", support:"Podpora", login:"Přihlásit", copied:"Zkopírováno", notAssoc:"Není spojeno s Mojang ani Microsoft",
@@ -310,7 +310,7 @@ cs:{
   t3:"Média", d3:"Požádej o výhody pro tvůrce obsahu po splnění požadavků.", t4:"Nahlásit hráče", d4:"Nahlas hráče, který porušuje pravidla.",
   t5:"Nahlásit chybu", d5:"Nahlas chybu nebo problém na serveru.", t6:"Problémy s připojením", d6:"Získej pomoc s připojením k serveru.",
   useDc:"Pro pomoc použij Discord!", openDc:"Otevřít Discord", enOnly:"Tyto zásady jsou dostupné pouze v angličtině.",
-  lang:"Jazyk", cur:"Měna", search:"Hledat"
+  lang:"Jazyk", cur:"Měna", search:"Hledat", vat:"+ DPH"
 },
 ro:{
   home:"Acasă", store:"Magazin", support:"Suport", login:"Autentificare", copied:"Copiat", notAssoc:"Nu este asociat cu Mojang sau Microsoft",
@@ -333,7 +333,7 @@ ro:{
   t3:"Media", d3:"Aplică pentru beneficii de creator după ce îndeplinești cerințele.", t4:"Raportează jucător", d4:"Raportează un jucător care încalcă regulile.",
   t5:"Raportează bug", d5:"Raportează un bug sau o problemă de pe server.", t6:"Probleme de conectare", d6:"Primește ajutor la conectarea la server.",
   useDc:"Folosește Discord pentru ajutor!", openDc:"Deschide Discord", enOnly:"Această politică este disponibilă doar în engleză.",
-  lang:"Limbă", cur:"Monedă", search:"Caută"
+  lang:"Limbă", cur:"Monedă", search:"Caută", vat:"+ TVA"
 },
 hu:{
   home:"Főoldal", store:"Bolt", support:"Támogatás", login:"Belépés", copied:"Másolva", notAssoc:"Nem áll kapcsolatban a Mojanggal vagy a Microsofttal",
@@ -356,7 +356,7 @@ hu:{
   t3:"Média", d3:"Jelentkezz tartalomkészítői előnyökért, ha teljesíted a feltételeket.", t4:"Játékos jelentése", d4:"Jelents egy szabályszegő játékost.",
   t5:"Hiba jelentése", d5:"Jelents egy hibát vagy problémát a szerveren.", t6:"Csatlakozási gondok", d6:"Segítség a szerverhez való csatlakozáshoz.",
   useDc:"Segítségért használd a Discordot!", openDc:"Discord megnyitása", enOnly:"Ez a szabályzat csak angolul érhető el.",
-  lang:"Nyelv", cur:"Pénznem", search:"Keresés"
+  lang:"Nyelv", cur:"Pénznem", search:"Keresés", vat:"+ ÁFA"
 },
 sv:{
   home:"Hem", store:"Butik", support:"Support", login:"Logga in", copied:"Kopierat", notAssoc:"Inte kopplat till Mojang eller Microsoft",
@@ -379,7 +379,7 @@ sv:{
   t3:"Media", d3:"Ansök om förmåner för innehållsskapare när du uppfyller kraven.", t4:"Rapportera spelare", d4:"Rapportera en spelare som bryter mot reglerna.",
   t5:"Rapportera bugg", d5:"Rapportera en bugg eller ett problem på servern.", t6:"Anslutningsproblem", d6:"Få hjälp att ansluta till servern.",
   useDc:"Använd Discord för att få hjälp!", openDc:"Öppna Discord", enOnly:"Den här policyn finns bara på engelska.",
-  lang:"Språk", cur:"Valuta", search:"Sök"
+  lang:"Språk", cur:"Valuta", search:"Sök", vat:"exkl. moms"
 },
 no:{
   home:"Hjem", store:"Butikk", support:"Støtte", login:"Logg inn", copied:"Kopiert", notAssoc:"Ikke tilknyttet Mojang eller Microsoft",
@@ -402,7 +402,7 @@ no:{
   t3:"Media", d3:"Søk om fordeler for innholdsskapere når du oppfyller kravene.", t4:"Rapporter spiller", d4:"Rapporter en spiller som bryter reglene.",
   t5:"Rapporter feil", d5:"Rapporter en feil eller et problem på serveren.", t6:"Tilkoblingsproblemer", d6:"Få hjelp til å koble til serveren.",
   useDc:"Bruk Discord for å få hjelp!", openDc:"Åpne Discord", enOnly:"Denne policyen finnes bare på engelsk.",
-  lang:"Språk", cur:"Valuta", search:"Søk"
+  lang:"Språk", cur:"Valuta", search:"Søk", vat:"eks. mva"
 },
 da:{
   home:"Hjem", store:"Butik", support:"Support", login:"Log ind", copied:"Kopieret", notAssoc:"Ikke tilknyttet Mojang eller Microsoft",
@@ -425,7 +425,7 @@ da:{
   t3:"Medier", d3:"Søg om fordele for indholdsskabere, når du opfylder kravene.", t4:"Rapporter spiller", d4:"Rapporter en spiller, der bryder reglerne.",
   t5:"Rapporter fejl", d5:"Rapporter en fejl eller et problem på serveren.", t6:"Forbindelsesproblemer", d6:"Få hjælp til at forbinde til serveren.",
   useDc:"Brug Discord for at få hjælp!", openDc:"Åbn Discord", enOnly:"Denne politik findes kun på engelsk.",
-  lang:"Sprog", cur:"Valuta", search:"Søg"
+  lang:"Sprog", cur:"Valuta", search:"Søg", vat:"ekskl. moms"
 },
 fi:{
   home:"Etusivu", store:"Kauppa", support:"Tuki", login:"Kirjaudu", copied:"Kopioitu", notAssoc:"Ei yhteydessä Mojangiin tai Microsoftiin",
@@ -448,7 +448,7 @@ fi:{
   t3:"Media", d3:"Hae sisällöntuottajan etuja, kun täytät vaatimukset.", t4:"Ilmoita pelaajasta", d4:"Ilmoita pelaajasta, joka rikkoo sääntöjä.",
   t5:"Ilmoita bugista", d5:"Ilmoita palvelimella kohtaamastasi bugista tai ongelmasta.", t6:"Yhteysongelmat", d6:"Hae apua palvelimeen yhdistämiseen.",
   useDc:"Käytä Discordia saadaksesi apua!", openDc:"Avaa Discord", enOnly:"Tämä käytäntö on saatavilla vain englanniksi.",
-  lang:"Kieli", cur:"Valuutta", search:"Hae"
+  lang:"Kieli", cur:"Valuutta", search:"Hae", vat:"+ ALV"
 },
 el:{
   home:"Αρχική", store:"Κατάστημα", support:"Υποστήριξη", login:"Σύνδεση", copied:"Αντιγράφηκε", notAssoc:"Δεν σχετίζεται με τη Mojang ή τη Microsoft",
@@ -471,7 +471,7 @@ el:{
   t3:"Media", d3:"Κάνε αίτηση για προνόμια δημιουργού περιεχομένου αφού καλύψεις τις προϋποθέσεις.", t4:"Αναφορά παίκτη", d4:"Ανάφερε παίκτη που παραβιάζει τους κανόνες.",
   t5:"Αναφορά σφάλματος", d5:"Ανάφερε σφάλμα ή πρόβλημα στον server.", t6:"Προβλήματα σύνδεσης", d6:"Βοήθεια για σύνδεση στον server.",
   useDc:"Χρησιμοποίησε το Discord για βοήθεια!", openDc:"Άνοιγμα Discord", enOnly:"Αυτή η πολιτική είναι διαθέσιμη μόνο στα αγγλικά.",
-  lang:"Γλώσσα", cur:"Νόμισμα", search:"Αναζήτηση"
+  lang:"Γλώσσα", cur:"Νόμισμα", search:"Αναζήτηση", vat:"+ ΦΠΑ"
 },
 ar:{
   home:"الرئيسية", store:"المتجر", support:"الدعم", login:"تسجيل الدخول", copied:"تم النسخ", notAssoc:"غير مرتبط بـ Mojang أو Microsoft",
@@ -494,7 +494,7 @@ ar:{
   t3:"الإعلام", d3:"قدّم على مزايا صانعي المحتوى بعد استيفاء الشروط.", t4:"الإبلاغ عن لاعب", d4:"أبلغ عن لاعب يخالف القواعد.",
   t5:"الإبلاغ عن خطأ", d5:"أبلغ عن خطأ أو مشكلة واجهتها في السيرفر.", t6:"مشاكل الاتصال", d6:"احصل على مساعدة للاتصال بالسيرفر.",
   useDc:"استخدم Discord للحصول على الدعم!", openDc:"افتح Discord", enOnly:"هذه السياسة متوفرة باللغة الإنجليزية فقط.",
-  lang:"اللغة", cur:"العملة", search:"بحث"
+  lang:"اللغة", cur:"العملة", search:"بحث", vat:"+ ضريبة القيمة المضافة"
 },
 hi:{
   home:"होम", store:"स्टोर", support:"सहायता", login:"लॉग इन", copied:"कॉपी हो गया", notAssoc:"Mojang या Microsoft से संबद्ध नहीं",
@@ -517,7 +517,7 @@ hi:{
   t3:"मीडिया", d3:"शर्तें पूरी करने के बाद कंटेंट क्रिएटर लाभ के लिए आवेदन करें।", t4:"खिलाड़ी की रिपोर्ट", d4:"नियम तोड़ने वाले खिलाड़ी की रिपोर्ट करें।",
   t5:"बग रिपोर्ट", d5:"सर्वर पर मिली किसी बग या समस्या की रिपोर्ट करें।", t6:"कनेक्शन समस्याएँ", d6:"सर्वर से जुड़ने में मदद पाएँ।",
   useDc:"मदद के लिए Discord का उपयोग करें!", openDc:"Discord खोलें", enOnly:"यह नीति केवल अंग्रेज़ी में उपलब्ध है।",
-  lang:"भाषा", cur:"मुद्रा", search:"खोजें"
+  lang:"भाषा", cur:"मुद्रा", search:"खोजें", vat:"+ वैट"
 },
 id:{
   home:"Beranda", store:"Toko", support:"Bantuan", login:"Masuk", copied:"Tersalin", notAssoc:"Tidak berafiliasi dengan Mojang atau Microsoft",
@@ -540,7 +540,7 @@ id:{
   t3:"Media", d3:"Daftar untuk keuntungan kreator konten setelah memenuhi syarat.", t4:"Laporkan Pemain", d4:"Laporkan pemain lain yang melanggar aturan.",
   t5:"Laporkan Bug", d5:"Laporkan bug atau masalah yang kamu temui di server.", t6:"Masalah Koneksi", d6:"Dapatkan bantuan untuk terhubung ke server.",
   useDc:"Gunakan Discord untuk mendapatkan bantuan kami!", openDc:"Buka Discord", enOnly:"Kebijakan ini hanya tersedia dalam bahasa Inggris.",
-  lang:"Bahasa", cur:"Mata uang", search:"Cari"
+  lang:"Bahasa", cur:"Mata uang", search:"Cari", vat:"+ PPN"
 },
 vi:{
   home:"Trang chủ", store:"Cửa hàng", support:"Hỗ trợ", login:"Đăng nhập", copied:"Đã sao chép", notAssoc:"Không liên kết với Mojang hoặc Microsoft",
@@ -563,7 +563,7 @@ vi:{
   t3:"Truyền thông", d3:"Đăng ký quyền lợi nhà sáng tạo nội dung khi đủ điều kiện.", t4:"Báo cáo người chơi", d4:"Báo cáo người chơi vi phạm luật.",
   t5:"Báo lỗi", d5:"Báo cáo lỗi hoặc sự cố bạn gặp trên máy chủ.", t6:"Sự cố kết nối", d6:"Nhận trợ giúp kết nối vào máy chủ.",
   useDc:"Dùng Discord để được hỗ trợ!", openDc:"Mở Discord", enOnly:"Chính sách này chỉ có bằng tiếng Anh.",
-  lang:"Ngôn ngữ", cur:"Tiền tệ", search:"Tìm kiếm"
+  lang:"Ngôn ngữ", cur:"Tiền tệ", search:"Tìm kiếm", vat:"+ thuế VAT"
 },
 th:{
   home:"หน้าแรก", store:"ร้านค้า", support:"ช่วยเหลือ", login:"เข้าสู่ระบบ", copied:"คัดลอกแล้ว", notAssoc:"ไม่มีส่วนเกี่ยวข้องกับ Mojang หรือ Microsoft",
@@ -586,7 +586,7 @@ th:{
   t3:"สื่อ", d3:"สมัครรับสิทธิพิเศษสำหรับครีเอเตอร์เมื่อผ่านเงื่อนไข", t4:"รายงานผู้เล่น", d4:"รายงานผู้เล่นที่ทำผิดกฎ",
   t5:"รายงานบั๊ก", d5:"รายงานบั๊กหรือปัญหาที่เจอในเซิร์ฟเวอร์", t6:"ปัญหาการเชื่อมต่อ", d6:"รับความช่วยเหลือในการเชื่อมต่อเซิร์ฟเวอร์",
   useDc:"ใช้ Discord เพื่อรับความช่วยเหลือจากเรา!", openDc:"เปิด Discord", enOnly:"นโยบายนี้มีเฉพาะภาษาอังกฤษ",
-  lang:"ภาษา", cur:"สกุลเงิน", search:"ค้นหา"
+  lang:"ภาษา", cur:"สกุลเงิน", search:"ค้นหา", vat:"+ VAT"
 },
 fil:{
   home:"Home", store:"Tindahan", support:"Suporta", login:"Mag-login", copied:"Nakopya", notAssoc:"Hindi kaugnay ng Mojang o Microsoft",
@@ -609,7 +609,7 @@ fil:{
   t3:"Media", d3:"Mag-apply para sa perks ng content creator kapag pasok ka sa requirements.", t4:"I-report ang Player", d4:"I-report ang player na lumalabag sa patakaran.",
   t5:"I-report ang Bug", d5:"I-report ang bug o problemang naranasan mo sa server.", t6:"Problema sa Koneksyon", d6:"Humingi ng tulong sa pagkonekta sa server.",
   useDc:"Gamitin ang Discord para sa aming suporta!", openDc:"Buksan ang Discord", enOnly:"Available lang sa English ang patakarang ito.",
-  lang:"Wika", cur:"Currency", search:"Maghanap"
+  lang:"Wika", cur:"Currency", search:"Maghanap", vat:"+ VAT"
 },
 ja:{
   home:"ホーム", store:"ストア", support:"サポート", login:"ログイン", copied:"コピーしました", notAssoc:"Mojang および Microsoft とは関係ありません",
@@ -632,7 +632,7 @@ ja:{
   t3:"メディア", d3:"条件を満たしたらクリエイター特典に応募できます。", t4:"プレイヤー通報", d4:"ルール違反のプレイヤーを通報します。",
   t5:"バグ報告", d5:"サーバーで見つけたバグや問題を報告します。", t6:"接続の問題", d6:"サーバーへの接続のヘルプ。",
   useDc:"サポートは Discord で！", openDc:"Discord を開く", enOnly:"このポリシーは英語のみです。",
-  lang:"言語", cur:"通貨", search:"検索"
+  lang:"言語", cur:"通貨", search:"検索", vat:"（税別）"
 },
 ko:{
   home:"홈", store:"상점", support:"지원", login:"로그인", copied:"복사됨", notAssoc:"Mojang 또는 Microsoft와 관련이 없습니다",
@@ -655,7 +655,7 @@ ko:{
   t3:"미디어", d3:"조건을 충족하면 크리에이터 혜택을 신청하세요.", t4:"플레이어 신고", d4:"규칙을 어긴 플레이어를 신고합니다.",
   t5:"버그 신고", d5:"서버에서 겪은 버그나 문제를 신고합니다.", t6:"접속 문제", d6:"서버 접속에 대한 도움을 받으세요.",
   useDc:"지원은 Discord에서 받으세요!", openDc:"Discord 열기", enOnly:"이 정책은 영어로만 제공됩니다.",
-  lang:"언어", cur:"통화", search:"검색"
+  lang:"언어", cur:"통화", search:"검색", vat:"(VAT 별도)"
 },
 zh:{
   home:"首页", store:"商店", support:"支持", login:"登录", copied:"已复制", notAssoc:"与 Mojang 或 Microsoft 无关",
@@ -678,7 +678,7 @@ zh:{
   t3:"媒体", d3:"满足要求后申请内容创作者福利。", t4:"举报玩家", d4:"举报违反规则的玩家。",
   t5:"报告错误", d5:"报告你在服务器上遇到的错误或问题。", t6:"连接问题", d6:"获取连接服务器的帮助。",
   useDc:"请通过 Discord 获取帮助！", openDc:"打开 Discord", enOnly:"此政策仅提供英文版本。",
-  lang:"语言", cur:"货币", search:"搜索"
+  lang:"语言", cur:"货币", search:"搜索", vat:"（不含增值税）"
 },
 "zh-TW":{
   home:"首頁", store:"商店", support:"支援", login:"登入", copied:"已複製", notAssoc:"與 Mojang 或 Microsoft 無關",
@@ -701,6 +701,6 @@ zh:{
   t3:"媒體", d3:"符合條件後申請內容創作者福利。", t4:"檢舉玩家", d4:"檢舉違反規則的玩家。",
   t5:"回報錯誤", d5:"回報你在伺服器上遇到的錯誤或問題。", t6:"連線問題", d6:"取得連線伺服器的協助。",
   useDc:"請透過 Discord 取得協助！", openDc:"開啟 Discord", enOnly:"此政策僅提供英文版本。",
-  lang:"語言", cur:"貨幣", search:"搜尋"
+  lang:"語言", cur:"貨幣", search:"搜尋", vat:"（未稅）"
 }
 };

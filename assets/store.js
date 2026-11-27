@@ -306,8 +306,8 @@ function fillCheckout(id){
   $('coImg').src = p.img;
   $('coImg').className = p.cover ? '' : 'contain';
   $('coTitle').textContent = p.title;
-  // show the converted estimate plus the real GBP amount that will be charged
-  $('coPrice').textContent = isConverted() ? `${money(p.gbp)} ${p.per} · ${gbpMoney(p.gbp)}` : `${gbpMoney(p.gbp)} ${p.per}`;
+  // show the converted estimate plus the real GBP amount that will be charged; prices are without VAT
+  $('coPrice').textContent = (isConverted() ? `${money(p.gbp)} ${p.per} · ${gbpMoney(p.gbp)}` : `${gbpMoney(p.gbp)} ${p.per}`) + ' ' + t('vat');
   $('coHead').src = head(player, 38);
   $('coName').textContent = player;
   $('coNote').textContent = p.note + ' ' + t('noteRest', player) + (isConverted() ? ' ' + t('gbpNote') : '');
