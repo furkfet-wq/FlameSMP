@@ -1,0 +1,18 @@
+# Flame SMP
+
+> Flame SMP is a Minecraft SMP (survival multiplayer) server for Java and Bedrock players. Server address: flamesmp.dat.gg (Bedrock port 17910). This site is the official Flame SMP website and store.
+
+## Pages
+
+- [Home](https://flamesmp-store.com/): server address, how to join, Discord and support links.
+- [Store](https://flamesmp-store.com/store.html): monthly ranks (Flame, Flame+, Flame++, Flame+++), bundles, shard packs and crate keys. Prices are in GBP and payment is by card through Stripe. Purchases are delivered in game to the Minecraft username given at checkout.
+- [Support](https://flamesmp-store.com/support.html): ban and mute appeals, player reports, bug reports, media applications and connection help, all handled on Discord.
+
+## Community
+
+- [Discord](https://discord.gg/95GuXDnyVC): support, announcements and the player community.
+- [YouTube](https://www.youtube.com/channel/UCuuaUF312YoQmD5rympsRGg): Flame SMP videos and Shorts.
+
+## Notes
+
+- Flame SMP is not associated with Mojang or Microsoft.
