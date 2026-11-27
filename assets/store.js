@@ -5,7 +5,7 @@ const PAY = {
   flame:     { stripe:'https://buy.stripe.com/28E9AUceLdYf0xlaza1ZS0x' },
   flameplus: { stripe:'https://buy.stripe.com/00wfZia6D5rJ4NBcHi1ZS0y' },
   flamepp:   { stripe:'https://buy.stripe.com/4gM5kEdiP07pbbZgXy1ZS0z' },
-  prestige:  { stripe:'https://buy.stripe.com/dRmcN6ceL3jB93RbDe1ZS0B' },
+  prestige:  { stripe:'https://buy.stripe.com/bJefZi7Yv4nFbbZcHi1ZS0F' },
   keybundle: { stripe:'https://buy.stripe.com/eVq6oI92zaM393RbDe1ZS0D' },
   enhancedbundle: { stripe:'https://buy.stripe.com/14A28sbaHaM3dk76iU1ZS0E' },
   s500:      { stripe:'https://buy.stripe.com/00wfZiceL6vN7ZN6iU1ZS0f' },
@@ -31,9 +31,9 @@ const RANKS = [
   { id:'flamepp', name:'Flame++', price:15, monthly:true, featured:true, crest:['#ffd6a0','#ff3b5c'], tier:3,
     grad:'linear-gradient(100deg,#ff5f38,#dc2458)', ink:'#ffffff', glow:'rgba(230,40,80,.75)',
     perks:[['shard','sh',2500],['home','pHomes',10],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame ++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] },
-  { id:'prestige', name:'Flame Prestige', price:75, monthly:false, crest:['#f3e1ff','#a855f7'], tier:4, big:true,
+  { id:'prestige', name:'Flame+++', price:75, monthly:true, crest:['#f3e1ff','#a855f7'], tier:4, big:true,
     grad:'linear-gradient(100deg,#c48dff,#8646f5)', ink:'#ffffff', glow:'rgba(150,80,255,.75)',
-    perks:[['shard','sh',8000],['home','pHomes',15],['lock','pVault',105],['flame','pTitle','Prestige'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
+    perks:[['shard','sh',13000],['home','pHomes',15],['gavel','pAuction',135],['box','pOrders',135],['lock','pVault',105],['flame','pTitle','Flame +++'],['globe','pRtp'],['chat','pRole'],['zap','pChat'],['shield','pQueue']] }
 ];
 /* bundles look like ranks (crate art instead of a shield); loot = [picture, amount, name] shown as tiles */
 const BUNDLES = [
